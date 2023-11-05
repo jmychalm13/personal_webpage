@@ -21,7 +21,7 @@ body, html {
 }
 
 .image-container img {
-  width: 33vw;
+  width: 600px;
   padding-top: 7rem;
   border-radius: 50%;
 }
@@ -49,6 +49,10 @@ hr.style-five:after {  /* Not really supposed to work, but does */
   content: "\00a0";  /* Prevent margin collapse */
 }
 
+section.content {
+  background-image: linear-gradient(to top, rgba(178, 120, 129, 0.8), rgba(178, 120, 129, 0.5)), url("https://www.toptal.com/designers/subtlepatterns/uploads/geometric-leaves.png");
+}
+
 section {
   padding-top: 7.5rem;
 }
@@ -61,7 +65,9 @@ h1 {
 
 
 section.about-container {
-  background-image: linear-gradient(to top, rgba(178, 120, 129, 0.8), rgba(178, 120, 129, 0.5)), url("https://www.toptal.com/designers/subtlepatterns/uploads/geometric-leaves.png");
   width: 100vw;
   padding: 3rem;
+  color: #000;
+  font-family: 'Lato', sans-serif;
+  font-size: 20px;
 }
