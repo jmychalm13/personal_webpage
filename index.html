@@ -9,7 +9,7 @@
   <title>JMo</title>
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg">
+  <nav id="top" class="fixed-top navbar navbar-expand-lg">
     <div class="container-fluid">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -17,22 +17,23 @@
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            <a class="nav-link active" aria-current="page" href="#top">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
+            <a class="nav-link" href="#about">About</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
+            <a class="nav-link" href="#contact">Contact</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Projects
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
+              <li><a class="dropdown-item" href="https://better-ims-frontend.onrender.com/">Better IMS</a></li>
+              <li><a class="dropdown-item" href="https://main.dtrabm1q2h984.amplifyapp.com/">Pokedex</a></li>
+              <li><a class="dropdown-item" href="https://main.d3s9yimw48iscy.amplifyapp.com/">Flash Cards</a></li>
+              <li><a class="dropdown-item" href="https://main.d3i5ox5nyteroy.amplifyapp.com/">Notes App</a></li>
             </ul>
           </li>
         </ul>
@@ -41,19 +42,19 @@
   </nav>
   <div class="parralax">
     <div class="row">
-      <div class="col-6 text-container">
+      <div id="hero-text" class="col-sm-6 text-container">
         <h1>Jess Mychal Moore</h1>
         <h3>Developer | Project Manager</h3>
         <p>"Code by code, I turn my determination into innovation,<br> and my perseverance into progress."</p>
       </div>
-      <div class="col-6 image-container">
-        <img src="/portrait.png" alt="">
+      <div class="col-sm-6 image-container">
+        <img class="img-fluid" src="/portrait.png" alt="">
       </div>
     </div>
   </div>
   <hr>
   <section class="content">
-    <section class="about-container">
+    <section id="about" class="about-container">
       <h1>About Me</h1><br>
           <p><strong>Can coffee make you a better developer?</strong></p>
           
@@ -64,7 +65,7 @@
           <p>I am an alumnus of Arizona State University and Actualize Coding Bootcamp. Currently, I’m enjoying teaching future developers as a TA at Actualize and leading a diverse team as a shift supervisor at Starbucks. However, I am eager to break into the tech industry.</p>
           <p>My journey in life revolves around self-evolution and I’m dedicated to leveraging my programming skills to effect a positive change. </p>
     </section>
-    <section class="contact-container">
+    <section id="contact" class="contact-container">
       <h1>Let's turn ideas into reality together!</h1>
       <div class="contact-icons row">
         <a class="col col-4" href="https://www.linkedin.com/in/jessmoore13">

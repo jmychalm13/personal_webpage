@@ -41,7 +41,7 @@ body, html {
 hr {
   border: 0;
   height: 0;
-  box-shadow: 0 0 10px 1px #141716;
+  box-shadow: 0 0 10px 1px #300038;
   margin: 0;
 }
 
@@ -50,7 +50,7 @@ hr.style-five:after {  /* Not really supposed to work, but does */
 }
 
 section.content {
-  background-image: linear-gradient(to top, rgba(178, 120, 129, 0.8), rgba(178, 120, 129, 0.5)), url("https://www.toptal.com/designers/subtlepatterns/uploads/geometric-leaves.png");
+  background-image: linear-gradient(to top, rgba(118,126,122, 0.8), rgba(118,126,122, 0.5)), url("https://www.toptal.com/designers/subtlepatterns/uploads/geometric-leaves.png");
 }
 
 h1 {
@@ -84,6 +84,18 @@ section.contact-container .row .col {
   font-size: 32px;
   text-decoration: none;
   color: #290030;
+}
+
+/* Media Queries */
+
+@media screen and (max-width: 575px) {
+  .image-container img {
+    display: none;
+  }
+
+  .text-container {
+    width: 100%;
+  }
 }
 
 
