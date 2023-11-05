@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Playpen+Sans&display=swap');
+
+.parralax {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://4kwallpapers.com/images/wallpapers/leaf-background-green-leaves-botanical-low-light-1680x1050-5851.jpg");
+  height: 70vh;
+  background-size: cover;
+  position: relative;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.image-container img {
+  width: 33vw;
+  padding-top: 7rem;
+  border-bottom-left-radius: 40%;
+  border-bottom-right-radius: 40%; 
+}
+
+.text-container {
+  width: 50%;
+  text-align: center;
+  /* display: flex; */
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-family: 'Playpen Sans', cursive;
+  /* top: 175px; */
+  padding-top: 10rem;
+}
