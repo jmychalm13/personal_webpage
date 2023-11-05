@@ -1,5 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato&family=Playpen+Sans&display=swap');
 
+body, html {
+  height: 100%;
+  margin: 0;
+  background-color: #b27881;
+  background-image: url("https://www.transparenttextures.com/patterns/flowers.png");
+}
+
+.navbar {
+  background-color: #777E7A;
+  font-family: 'Lato', sans-serif;
+}
+
 .parralax {
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://4kwallpapers.com/images/wallpapers/leaf-background-green-leaves-botanical-low-light-1680x1050-5851.jpg");
   height: 70vh;
