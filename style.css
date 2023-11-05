@@ -10,6 +10,11 @@ body, html {
   font-family: 'Lato', sans-serif;
 }
 
+.navbar-nav .dropdown-menu {
+  background-color: #777E7A;
+  border: none;
+}
+
 .parralax {
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://4kwallpapers.com/images/wallpapers/leaf-background-green-leaves-botanical-low-light-1680x1050-5851.jpg");
   height: 70vh;
@@ -95,6 +100,11 @@ section.contact-container .row .col {
 
   .text-container {
     width: 100%;
+  }
+
+  section.about-container {
+  padding: 8rem 3rem 7rem 3rem;
+
   }
 }
 
