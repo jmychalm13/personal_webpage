@@ -91,6 +91,14 @@ section.contact-container .row .col {
   color: #290030;
 }
 
+.projects-container .projects-box {
+  
+}
+
+.projects-container .projects-box .img-fluid {
+  width: 25%rem;
+}
+
 /* Media Queries */
 
 @media screen and (max-width: 575px) {
