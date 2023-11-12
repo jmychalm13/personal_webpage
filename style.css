@@ -103,6 +103,19 @@ section.contact-container .row .col {
   width: 25%rem;
 }
 
+/* charts */
+.charts {
+  width: 100vw;
+}
+
+canvas#myChart {
+  max-width: 80%;
+}
+
+canvas#toolbox {
+  max-width: 60%;
+}
+
 /* Media Queries */
 
 @media screen and (max-width: 575px) {
