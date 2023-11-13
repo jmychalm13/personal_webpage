@@ -95,6 +95,10 @@ section.contact-container .row .col {
   color: #290030;
 }
 
+.skill-icon {
+  width: 36px;
+}
+
 .projects-container {
   padding-top: 3rem;
 }
