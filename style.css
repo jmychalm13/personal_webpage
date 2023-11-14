@@ -107,17 +107,8 @@ section.contact-container .row .col {
   width: 25%rem;
 }
 
-/* charts */
-.charts {
-  width: 100vw;
-}
-
-canvas#myChart {
-  max-width: 80%;
-}
-
-canvas#toolbox {
-  max-width: 60%;
+.card {
+  filter: drop-shadow(black .5rem .5rem 10px);
 }
 
 /* Media Queries */
