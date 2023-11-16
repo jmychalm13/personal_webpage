@@ -16,6 +16,10 @@ body, html {
   border: none;
 }
 
+.dropdown-item:hover {
+  background-color: #d7eadf;
+}
+
 .parralax {
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://4kwallpapers.com/images/wallpapers/leaf-background-green-leaves-botanical-low-light-1680x1050-5851.jpg");
   height: 70vh;
@@ -137,6 +141,14 @@ section.contact-container h1 {
 .thumbnail {
   width: 250px;
   border-radius: 3px;
+}
+
+.footer {
+  background-color: #777E7A;
+  padding: 20px 0;
+  text-align: left;
+  width: 100%;
+  color: #d7eadf;
 }
 
 /* Media Queries */
