@@ -92,6 +92,14 @@ section.contact-container h1 {
   padding-bottom: 3rem;
 }
 
+.project-description {
+  text-align: right;
+}
+
+.description-text {
+  font-size: 1rem;
+}
+
 /* section.contact-container .row {
   text-align: center;
 } */
@@ -110,13 +118,8 @@ section.contact-container h1 {
   width: 36px;
 }
 
-.projects-container, 
-.contact-container {
+ .contact-container {
   padding-top: 3rem;
-}
-
-.projects-container .projects-box .img-fluid {
-  width: 25%rem;
 }
 
 .card {
