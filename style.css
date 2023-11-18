@@ -9,11 +9,17 @@ body, html {
 .navbar {
   background-color: #777E7A;
   font-family: 'Lato', sans-serif;
+  
 }
 
 .navbar-nav .dropdown-menu {
   background-color: #777E7A;
   border: none;
+}
+
+.navbar a {
+  color: #d7eadf;
+  font-family: 'Playpen Sans', cursive;
 }
 
 .dropdown-item:hover {
