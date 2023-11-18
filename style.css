@@ -165,7 +165,14 @@ section.contact-container h1 {
 
   section.about-container {
   padding: 8rem 3rem 7rem 3rem;
+  }
 
+  .projects-container .card {
+    width: 85vw;
+  }
+
+  .projects-container .card .text-center {
+    text-align: center;
   }
 }
 
