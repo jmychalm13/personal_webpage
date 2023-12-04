@@ -92,19 +92,10 @@ section.content {
 
 section.about-container {
   width: 100vw;
-  /* padding: 10rem 3rem 7rem 0; */
-  /* color: #000; */
   font-family: 'Lato', sans-serif;
   font-size: 20px;
 }
 
-section.contact-container {
-  /* padding: 10rem 0 7rem 0; */
-}
-
-section.contact-container h1 {
-  /* padding-bottom: 3rem; */
-}
 
 
 .project-description {
@@ -115,26 +106,12 @@ section.contact-container h1 {
   font-size: 1rem;
 }
 
-/* section.contact-container .row {
-  text-align: center;
-} */
-
-/* section.contact-container .row .col {
-  font-size: 32px;
-  text-decoration: none;
-  color: #290030;
-} */
-
-/* .skills-container {
-  padding: 10rem 3rem 7rem 3rem;
-} */
-
 .skill-icon {
   width: 36px;
 }
 
- .contact-container {
-  /* padding-top: 3rem; */
+.contact-form {
+  padding-top: 7rem;
 }
 
 .card {
@@ -150,7 +127,7 @@ section.contact-container h1 {
 }        
 
 .thumbnail {
-  width: 100%;
+  width: 90%;
   object-fit: cover;
   border-radius: 3px;
   border: solid #606763 1px;
@@ -164,6 +141,12 @@ section.contact-container h1 {
   text-align: left;
   width: 100%;
   color: #d7eadf;
+}
+
+.btn {
+  border: solid 1px black;
+  background: #d7eadf;
+  font-family: 'Playpen Sans', cursive;
 }
 
 
