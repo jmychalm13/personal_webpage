@@ -138,7 +138,7 @@ section.contact-container h1 {
 }
 
 .card {
-  filter: drop-shadow(#210027 .5rem .5rem 10px);
+  box-shadow: 0 0 50px #4c504e;
   font-size: 1.5rem;
   background-color: #777E7A;
   color: #d7eadf;
@@ -150,8 +150,11 @@ section.contact-container h1 {
 }        
 
 .thumbnail {
-  width: 250px;
+  width: 350px;
+  height: 225px;
   border-radius: 3px;
+  border: solid #606763 1px;
+  box-shadow: 0 0 50px #4c504e;
 }
 
 .footer {
