@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato&family=Playpen+Sans&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
 body, html {
   height: 100%;
   margin: 0;
@@ -23,7 +25,7 @@ a {
 
 .navbar a {
   color: #d7eadf;
-  font-family: 'Playpen Sans', cursive;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .dropdown-item:hover {
@@ -53,7 +55,7 @@ a {
   justify-content: center;
   align-items: center;
   color: #d7eadf;
-  font-family: 'Playpen Sans', cursive;
+  font-family: 'Montserrat', sans-serif;
   /* top: 175px; */
   padding-top: 10rem;
 }
@@ -75,7 +77,7 @@ section.content {
 
 h1 {
   text-align: center;
-  font-family: 'Playpen Sans', cursive;
+  font-family: 'Montserrat', sans-serif;
   text-decoration: underline;
   padding-bottom: 2rem;
 }
