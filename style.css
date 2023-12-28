@@ -151,6 +151,10 @@ section.about-container {
   font-family: 'Playpen Sans', cursive;
 }
 
+.form-group small {
+  font-size: 14px;
+}
+
 
 
 /* Media Queries */
