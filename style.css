@@ -1,11 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato&family=Playpen+Sans&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Lato&family=Playpen+Sans&display=swap");
 
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 
-body, html {
+body,
+html {
   height: 100%;
   margin: 0;
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
 }
 
 a {
@@ -13,19 +14,18 @@ a {
 }
 
 .navbar {
-  background-color: #777E7A;
-  font-family: 'Lato', sans-serif;
-  
+  background-color: #777e7a;
+  font-family: "Lato", sans-serif;
 }
 
 .navbar-nav .dropdown-menu {
-  background-color: #777E7A;
+  background-color: #777e7a;
   border: none;
 }
 
 .navbar a {
   color: #d7eadf;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 
 .dropdown-item:hover {
@@ -33,7 +33,8 @@ a {
 }
 
 .parralax {
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://4kwallpapers.com/images/wallpapers/leaf-background-green-leaves-botanical-low-light-1680x1050-5851.jpg");
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("https://4kwallpapers.com/images/wallpapers/leaf-background-green-leaves-botanical-low-light-1680x1050-5851.jpg");
   height: 70vh;
   background-size: cover;
   position: relative;
@@ -44,7 +45,7 @@ a {
 
 .image-container img {
   width: 600px;
-  padding-top: 7rem;
+  margin-top: 7rem;
   border-radius: 50%;
 }
 
@@ -55,7 +56,7 @@ a {
   justify-content: center;
   align-items: center;
   color: #d7eadf;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   /* top: 175px; */
   padding-top: 10rem;
 }
@@ -67,17 +68,23 @@ hr {
   margin: 0;
 }
 
-hr.style-five:after {  /* Not really supposed to work, but does */
-  content: "\00a0";  /* Prevent margin collapse */
+hr.style-five:after {
+  /* Not really supposed to work, but does */
+  content: "\00a0"; /* Prevent margin collapse */
 }
 
 section.content {
-  background-image: linear-gradient(to top, rgba(118,126,122, 0.8), rgba(118,126,122, 0.5)), url("https://www.toptal.com/designers/subtlepatterns/uploads/geometric-leaves.png");
+  background-image: linear-gradient(
+      to top,
+      rgba(118, 126, 122, 0.8),
+      rgba(118, 126, 122, 0.5)
+    ),
+    url("https://www.toptal.com/designers/subtlepatterns/uploads/geometric-leaves.png");
 }
 
 h1 {
   text-align: center;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   text-decoration: underline;
   padding-bottom: 2rem;
 }
@@ -91,14 +98,11 @@ section.content {
   color: #290030;
 }
 
-
 section.about-container {
   width: 100vw;
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
   font-size: 20px;
 }
-
-
 
 .project-description {
   text-align: right;
@@ -119,14 +123,14 @@ section.about-container {
 .card {
   box-shadow: 0 0 50px #4c504e;
   font-size: 1.5rem;
-  background-color: #777E7A;
+  background-color: #777e7a;
   color: #d7eadf;
 }
 
 .card a {
   color: #d7eadf;
   text-decoration: none;
-}        
+}
 
 .thumbnail {
   width: 90%;
@@ -138,7 +142,7 @@ section.about-container {
 }
 
 .footer {
-  background-color: #777E7A;
+  background-color: #777e7a;
   padding: 20px 0;
   text-align: left;
   width: 100%;
@@ -148,14 +152,12 @@ section.about-container {
 .btn {
   border: solid 1px black;
   background: #d7eadf;
-  font-family: 'Playpen Sans', cursive;
+  font-family: "Playpen Sans", cursive;
 }
 
 .form-group small {
   font-size: 14px;
 }
-
-
 
 /* Media Queries */
 
@@ -169,7 +171,7 @@ section.about-container {
   }
 
   section.about-container {
-  /* padding: 8rem 3rem 7rem 3rem; */
+    /* padding: 8rem 3rem 7rem 3rem; */
   }
 
   .projects-container .card {
@@ -179,10 +181,7 @@ section.about-container {
   .projects-container .card .text-center {
     text-align: center;
   }
-  
 }
-
-
 
 /* Grow */
 .hvr-grow {
@@ -196,13 +195,9 @@ section.about-container {
   -webkit-transition-property: transform;
   transition-property: transform;
 }
-.hvr-grow:hover, .hvr-grow:focus, .hvr-grow:active {
+.hvr-grow:hover,
+.hvr-grow:focus,
+.hvr-grow:active {
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
 }
-
-
-
-
-
-
