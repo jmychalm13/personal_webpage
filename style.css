@@ -1,64 +1,43 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato&family=Playpen+Sans&display=swap");
-
 @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 
+/* --- 1. THEME VARIABLES --- */
+:root {
+  --accent-color: #3a4d39; /* Blazer Green */
+  --accent-light: rgba(
+    58,
+    77,
+    57,
+    0.2
+  ); /* Increased opacity for visible card background */
+  --text-light: #d7eadf;
+  --bg-gray: #777e7a;
+}
+
+/* --- 2. GLOBAL STYLES --- */
 body,
 html {
   height: 100%;
   margin: 0;
   font-family: "Lato", sans-serif;
+  overflow-x: hidden;
 }
 
 a {
   text-decoration: none;
 }
 
-.navbar {
-  background-color: #777e7a;
-  font-family: "Lato", sans-serif;
-}
-
-.navbar-nav .dropdown-menu {
-  background-color: #777e7a;
-  border: none;
-}
-
-.navbar a {
-  color: #d7eadf;
-  font-family: "Montserrat", sans-serif;
-}
-
-.dropdown-item:hover {
-  background-color: #d7eadf;
-}
-
-.parralax {
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("https://4kwallpapers.com/images/wallpapers/leaf-background-green-leaves-botanical-low-light-1680x1050-5851.jpg");
-  height: 70vh;
-  background-size: cover;
-  position: relative;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-}
-
-.image-container img {
-  width: 600px;
-  margin-top: 7rem;
-  border-radius: 50%;
-}
-
-.text-container {
-  width: 50%;
+h1 {
   text-align: center;
-  /* display: flex; */
-  justify-content: center;
-  align-items: center;
-  color: #d7eadf;
   font-family: "Montserrat", sans-serif;
-  /* top: 175px; */
-  padding-top: 10rem;
+  text-decoration: underline;
+  padding-bottom: 2rem;
+  color: var(--accent-color);
+}
+
+section {
+  padding-top: 7rem;
+  scroll-margin-top: 70px;
 }
 
 hr {
@@ -68,136 +47,218 @@ hr {
   margin: 0;
 }
 
-hr.style-five:after {
-  /* Not really supposed to work, but does */
-  content: "\00a0"; /* Prevent margin collapse */
+/* --- 3. NAVBAR --- */
+.navbar {
+  background-color: var(--bg-gray);
 }
-
-section.content {
-  background-image: linear-gradient(
-      to top,
-      rgba(118, 126, 122, 0.8),
-      rgba(118, 126, 122, 0.5)
-    ),
-    url("https://www.toptal.com/designers/subtlepatterns/uploads/geometric-leaves.png");
-}
-
-h1 {
-  text-align: center;
+.navbar a {
+  color: var(--text-light);
   font-family: "Montserrat", sans-serif;
-  text-decoration: underline;
-  padding-bottom: 2rem;
+}
+.navbar-nav .dropdown-menu {
+  background-color: var(--bg-gray);
+  border: none;
+}
+.dropdown-item:hover {
+  background-color: var(--text-light);
+  color: var(--accent-color);
 }
 
-section {
-  padding-top: 7rem;
-  width: 100vw;
+/* --- 4. HERO SECTION --- */
+.parralax {
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("https://4kwallpapers.com/images/wallpapers/leaf-background-green-leaves-botanical-low-light-1680x1050-5851.jpg");
+  height: 70vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
+.text-container {
+  padding-top: 10rem;
+  color: var(--text-light);
+  font-family: "Montserrat", sans-serif;
+  text-align: center;
+}
+
+.image-container img {
+  width: 600px;
+  margin-top: 7rem;
+  border-radius: 50%;
+}
+
+/* --- 5. CONTENT AREA --- */
 section.content {
+  background-image:
+    linear-gradient(to top, rgba(118, 126, 122, 0.8), rgba(118, 126, 122, 0.5)),
+    url("https://www.toptal.com/designers/subtlepatterns/uploads/geometric-leaves.png");
   color: #290030;
 }
 
-section.about-container {
-  width: 100vw;
-  font-family: "Lato", sans-serif;
-  font-size: 20px;
+.about-container p {
+  line-height: 1.8;
+  font-size: 1.1rem;
+  color: #444;
+}
+.about-container strong {
+  color: var(--accent-color);
+  font-weight: 700;
 }
 
-.project-description {
-  text-align: right;
+.about-container a {
+  color: var(--accent-color);
+  font-weight: 700;
+  border-bottom: 1px solid rgba(58, 77, 57, 0.3);
 }
 
-.description-text {
-  font-size: 1rem;
+/* --- 6. STRATEGIC CAPABILITIES (Restored Styling) --- */
+.capability-card {
+  background: #ffffff;
+  border-radius: 15px;
+  padding: 30px;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  border: 1px solid #eee;
+  color: #333;
 }
 
+.capability-card:hover {
+  transform: translateY(-10px);
+  border: 2px solid var(--accent-color) !important;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1) !important;
+}
+
+.icon-box i,
+.capability-list i {
+  color: var(--accent-color) !important;
+}
+.icon-box i {
+  font-size: 3rem;
+}
+
+/* --- 7. TOOLKIT & SPECIAL HIGHLIGHTS --- */
+.card {
+  box-shadow: 0 0 50px #4c504e;
+  background-color: var(--bg-gray);
+  color: var(--text-light);
+  border: none;
+}
+
+/* The Salesforce Highlight - Fixed Background */
+.skill-card-special {
+  border: 2px solid var(--accent-color) !important;
+  background-color: var(
+    --accent-light
+  ) !important; /* Visible Green Background */
+  color: var(--accent-color) !important;
+}
+
+.skill-card-special strong {
+  color: var(--accent-color);
+}
 .skill-icon {
   width: 36px;
+  height: auto;
+}
+
+/* --- 8. PROJECTS & SOCIALS --- */
+.thumbnail {
+  width: 90%;
+  border-radius: 3px;
+  border: solid #606763 1px;
+  box-shadow: 0 0 50px #4c504e;
+}
+
+/* Social Media link styling */
+.contact-icons .card a,
+.contact-icons i {
+  color: var(--text-light) !important;
+}
+
+.contact-icons .card:hover a,
+.contact-icons .card:hover i {
+  color: var(--accent-color) !important;
+}
+
+.footer {
+  background-color: var(--bg-gray);
+  padding: 20px 0;
+  color: var(--text-light);
+}
+.btn {
+  background: var(--text-light);
+  font-family: "Playpen Sans", cursive;
+  border: 1px solid black;
+}
+
+.hvr-grow {
+  transition: 0.3s;
+}
+.hvr-grow:hover {
+  transform: scale(1.1);
+}
+
+/* --- Center Capability Card (The "Join") --- */
+.highlight-card {
+  /* Using a solid light version of your green so it definitely shows up */
+  background-color: #f2f4f2 !important;
+  border-top: 6px solid var(--accent-color) !important; /* Thick top accent */
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  transform: scale(1.02); /* Makes it slightly larger to show it's the 'join' */
+  z-index: 2;
+  box-shadow: 0 10px 30px rgba(58, 77, 57, 0.15) !important;
+}
+
+/* Ensure the text inside the join card is sharp */
+/* --- Center Capability Card (The "Join") --- */
+.highlight-card {
+  /* A soft Sage background that is clearly visible */
+  background-color: #f0f4f0 !important;
+  /* A full, clean border in your Blazer Green */
+  border: 2px solid var(--accent-color) !important;
+  /* Slightly larger to visually 'overlap' and connect the other two */
+  transform: scale(1.05);
+  z-index: 5;
+  box-shadow: 0 10px 40px rgba(58, 77, 57, 0.15) !important;
+  position: relative;
+}
+
+/* The "Join" Label at the top */
+.highlight-card::before {
+  content: "INTEGRATION";
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--accent-color);
+  color: white;
+  padding: 2px 15px;
+  border-radius: 20px;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+/* Ensure the text inside the join card matches the theme */
+.highlight-card h3,
+.highlight-card p {
+  color: var(--accent-color) !important;
 }
 
 .contact-form {
   padding-top: 7rem;
 }
 
-.card {
-  box-shadow: 0 0 50px #4c504e;
-  font-size: 1.5rem;
-  background-color: #777e7a;
-  color: #d7eadf;
-}
-
-.card a {
-  color: #d7eadf;
-  text-decoration: none;
-}
-
-.thumbnail {
-  width: 90%;
-  object-fit: cover;
-  border-radius: 3px;
-  border: solid #606763 1px;
-  box-shadow: 0 0 50px #4c504e;
-  margin: auto;
-}
-
-.footer {
-  background-color: #777e7a;
-  padding: 20px 0;
-  text-align: left;
-  width: 100%;
-  color: #d7eadf;
-}
-
-.btn {
-  border: solid 1px black;
-  background: #d7eadf;
-  font-family: "Playpen Sans", cursive;
-}
-
-.form-group small {
-  font-size: 14px;
-}
-
-/* Media Queries */
-
 @media screen and (max-width: 575px) {
   .image-container img {
     display: none;
   }
-
   .text-container {
     width: 100%;
   }
-
-  section.about-container {
-    /* padding: 8rem 3rem 7rem 3rem; */
-  }
-
-  .projects-container .card {
-    width: 85vw;
-  }
-
-  .projects-container .card .text-center {
-    text-align: center;
-  }
-}
-
-/* Grow */
-.hvr-grow {
-  display: inline-block;
-  vertical-align: middle;
-  -webkit-transform: perspective(1px) translateZ(0);
-  transform: perspective(1px) translateZ(0);
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-  -webkit-transition-duration: 0.3s;
-  transition-duration: 0.3s;
-  -webkit-transition-property: transform;
-  transition-property: transform;
-}
-.hvr-grow:hover,
-.hvr-grow:focus,
-.hvr-grow:active {
-  -webkit-transform: scale(1.1);
-  transform: scale(1.1);
 }
