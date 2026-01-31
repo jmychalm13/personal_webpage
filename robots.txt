@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Direct Google to your sitemap once you create it
+Sitemap: https://jessica-moore.com/sitemap.xml
