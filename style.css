@@ -254,6 +254,10 @@ section.content {
   padding-top: 7rem;
 }
 
+.capability-card li {
+  list-style-type: none;
+}
+
 @media screen and (max-width: 575px) {
   .image-container img {
     display: none;
