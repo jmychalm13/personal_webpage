@@ -3,32 +3,105 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Jessica Mychal Moore — Application Design Engineer</title>
+    <meta
+      name="description"
+      content="Jessica Mychal Moore is an Application Design Engineer in Nashville, Tennessee, architecting Salesforce solutions for nonprofits at Undaunted Consulting. Project management strategy paired with full-stack development."
+    />
+    <meta name="author" content="Jessica Mychal Moore" />
+
+    <!-- NOTE: if you move to a custom domain, update the four absolute URLs
+         below (canonical, og:url, og:image, twitter:image) to match it. -->
+    <link
+      rel="canonical"
+      href="https://jmychalm13.github.io/personal_webpage/"
+    />
+
+    <!-- Open Graph / Twitter — so LinkedIn shares render a real card -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Jessica Mychal Moore" />
+    <meta
+      property="og:title"
+      content="Jessica Mychal Moore — Application Design Engineer"
+    />
+    <meta
+      property="og:description"
+      content="Architecting Salesforce solutions for nonprofits. Rooted in strategy, growing for good."
+    />
+    <meta
+      property="og:url"
+      content="https://jmychalm13.github.io/personal_webpage/"
+    />
+    <meta
+      property="og:image"
+      content="https://jmychalm13.github.io/personal_webpage/portrait.png"
+    />
+    <meta property="og:image:width" content="400" />
+    <meta property="og:image:height" content="400" />
+    <meta property="og:image:alt" content="Portrait of Jessica Mychal Moore" />
+    <meta name="twitter:card" content="summary" />
+    <meta
+      name="twitter:title"
+      content="Jessica Mychal Moore — Application Design Engineer"
+    />
+    <meta
+      name="twitter:description"
+      content="Architecting Salesforce solutions for nonprofits. Rooted in strategy, growing for good."
+    />
+    <meta
+      name="twitter:image"
+      content="https://jmychalm13.github.io/personal_webpage/portrait.png"
+    />
+
     <!-- Favicon -->
-    <link
-      rel="shortcut icon"
-      href="assets/project_images/fa"
-      type="image/x-icon"
+    <link rel="icon" href="favicon.ico" sizes="any" />
+    <link rel="apple-touch-icon" href="portrait.png" />
+
+    <meta name="theme-color" content="#2a3a29" />
+    <meta
+      name="theme-color"
+      media="(prefers-color-scheme: dark)"
+      content="#161d17"
     />
-    <!-- font-awesome -->
+
+    <!--
+      Applies the stored theme before first paint so dark-mode users never see
+      a white flash. Also flags that JS is alive, which is what unlocks the
+      scroll-reveal styles — without it nothing is ever hidden.
+    -->
+    <script>
+      (function () {
+        var root = document.documentElement;
+        try {
+          var stored = localStorage.getItem("theme");
+          if (stored === "dark" || stored === "light") {
+            root.setAttribute("data-theme", stored);
+            root.setAttribute("data-bs-theme", stored);
+          } else if (
+            window.matchMedia("(prefers-color-scheme: dark)").matches
+          ) {
+            root.setAttribute("data-bs-theme", "dark");
+          }
+        } catch (e) {
+          /* storage blocked — fall back to the media query in CSS */
+        }
+        root.classList.add("js-reveal");
+      })();
+    </script>
+
+    <!-- Fonts: preconnected and non-blocking, rather than @import'd from CSS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:wght@500;600;700;800&display=swap"
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
     />
+
     <!-- Bootstrap Icons -->
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
-    />
-    <!-- HoverCSS -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css"
-      integrity="sha512-csw0Ma4oXCAgd/d4nTcpoEoz4nYvvnk21a8VA2h2dzhPAvjbUIK6V3si7/g/HehwdunqqW18RwCJKpD7rL67Xg=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
     />
     <!-- Bootstrap -->
     <link
@@ -37,13 +110,20 @@
       integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
       crossorigin="anonymous"
     />
-    <!-- Stylesheet -->
     <link rel="stylesheet" href="style.css" />
-    <title>JMo</title>
   </head>
+
   <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="scroll-progress" aria-hidden="true"></div>
+
     <nav id="top" class="fixed-top navbar navbar-expand-lg navbar-dark">
       <div class="container-fluid">
+        <a class="navbar-brand" href="#top">
+          <span class="brand-mark" aria-hidden="true">JM</span>
+          <span>Jessica Moore</span>
+        </a>
+
         <button
           class="navbar-toggler"
           type="button"
@@ -55,588 +135,835 @@
         >
           <span class="navbar-toggler-icon"></span>
         </button>
+
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
-            </li>
-            <li class="nav-item">
               <a class="nav-link" href="#about">About</a>
             </li>
-
-            <li class="nav-item dropdown d-flex align-items-center">
-              <a class="nav-link" href="#projects">Projects</a>
-              <a
-                class="nav-link dropdown-toggle dropdown-toggle-split"
-                href="#"
-                id="navbarDropdownMenuLink"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                <span class="visually-hidden">Toggle Dropdown</span>
-              </a>
-              <ul
-                class="dropdown-menu"
-                aria-labelledby="navbarDropdownMenuLink"
-              >
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="https://main.d1iw165sp6kany.amplifyapp.com"
-                    target="_blank"
-                    >Budget App</a
-                  >
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="https://main.dtrabm1q2h984.amplifyapp.com/"
-                    target="_blank"
-                    >Pokedex</a
-                  >
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="https://main.d3s9yimw48iscy.amplifyapp.com"
-                    target="_blank"
-                    >Notes App</a
-                  >
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="https://main.drjpjrb3ellue.amplifyapp.com"
-                    target="_blank"
-                    >Speech Reader</a
-                  >
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="https://main.d30bho10he44a1.amplifyapp.com"
-                    target="_blank"
-                    >Rock, Paper, Scissors, Spock</a
-                  >
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="https://better-ims-frontend.onrender.com"
-                    target="_blank"
-                    >Better IMS</a
-                  >
-                </li>
-              </ul>
+            <li class="nav-item">
+              <a class="nav-link" href="#capabilities">Capabilities</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#contact">Contact</a>
             </li>
           </ul>
-        </div>
-        <div class="d-flex ms-auto resume-link">
-          <a
-            href="https://docs.google.com/document/d/1y9YoN1_k_dic7UfgDxT9XxKIurEKhr63/edit?usp=sharing&ouid=117880230352684280893&rtpof=true&sd=true"
-            target="_blank"
-            >Resume</a
-          >
+
+          <div class="d-flex ms-auto align-items-center gap-2 resume-link">
+            <a
+              href="https://docs.google.com/document/d/1y9YoN1_k_dic7UfgDxT9XxKIurEKhr63/edit?usp=sharing&amp;ouid=117880230352684280893&amp;rtpof=true&amp;sd=true"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Resume</a
+            >
+            <button
+              class="theme-toggle"
+              type="button"
+              aria-pressed="false"
+              aria-label="Switch to dark theme"
+            >
+              <i class="bi bi-moon-stars-fill" aria-hidden="true"></i>
+              <i class="bi bi-sun-fill" aria-hidden="true"></i>
+            </button>
+          </div>
         </div>
       </div>
     </nav>
-    <div class="parralax">
-      <div class="row">
-        <div id="hero-text" class="col-sm-6 text-container">
-          <h1>Jess Mychal Moore</h1>
-          <h3>Application Design Engineer</h3>
-          <p>
-            "Code by code, I turn my determination into innovation,<br />
-            and my perseverance into progress."
-          </p>
+
+    <main id="main">
+      <!-- =================== HERO =================== -->
+      <section class="hero">
+        <!--
+          Botanical parallax. Three depth layers of ferns and eucalyptus,
+          each drifting at its own rate: the far layer lags the scroll (reads
+          as distance), the near line-art layer leads it (reads as close to
+          the lens). Pure SVG — no image requests, and it sidesteps the
+          `background-attachment: fixed` bug that broke the old parallax on
+          iOS Safari. Motion is driven from script.js and is switched off
+          entirely under prefers-reduced-motion.
+        -->
+        <svg
+          class="bt-defs"
+          width="0"
+          height="0"
+          aria-hidden="true"
+          focusable="false"
+        >
+          <defs>
+            <g id="bt-fern">
+              <path
+                class="bt-stem"
+                d="M0.0 0.0 C130.0 -64.0 300.0 -84.0 440.0 -16.0"
+                stroke-width="2.2"
+              />
+              <path
+                d="M0 0 C22.8 -6.6 52.3 -4.0 67.0 0 C52.3 4.0 22.8 6.6 0 0 Z"
+                transform="translate(19.8 -9.3) rotate(34.0)"
+              />
+              <path
+                d="M0 0 C22.8 -6.6 52.3 -4.0 67.0 0 C52.3 4.0 22.8 6.6 0 0 Z"
+                transform="translate(19.8 -9.3) rotate(-82.0)"
+              />
+              <path
+                d="M0 0 C25.8 -7.5 59.2 -4.5 75.9 0 C59.2 4.5 25.8 7.5 0 0 Z"
+                transform="translate(41.0 -18.2) rotate(35.2)"
+              />
+              <path
+                d="M0 0 C25.8 -7.5 59.2 -4.5 75.9 0 C59.2 4.5 25.8 7.5 0 0 Z"
+                transform="translate(41.0 -18.2) rotate(-78.5)"
+              />
+              <path
+                d="M0 0 C28.6 -8.3 65.6 -5.0 84.1 0 C65.6 5.0 28.6 8.3 0 0 Z"
+                transform="translate(62.8 -26.3) rotate(36.4)"
+              />
+              <path
+                d="M0 0 C28.6 -8.3 65.6 -5.0 84.1 0 C65.6 5.0 28.6 8.3 0 0 Z"
+                transform="translate(62.8 -26.3) rotate(-75.1)"
+              />
+              <path
+                d="M0 0 C31.1 -9.0 71.3 -5.4 91.4 0 C71.3 5.4 31.1 9.0 0 0 Z"
+                transform="translate(85.1 -33.7) rotate(37.6)"
+              />
+              <path
+                d="M0 0 C31.1 -9.0 71.3 -5.4 91.4 0 C71.3 5.4 31.1 9.0 0 0 Z"
+                transform="translate(85.1 -33.7) rotate(-71.7)"
+              />
+              <path
+                d="M0 0 C33.2 -9.7 76.1 -5.8 97.6 0 C76.1 5.8 33.2 9.7 0 0 Z"
+                transform="translate(107.8 -40.1) rotate(38.9)"
+              />
+              <path
+                d="M0 0 C33.2 -9.7 76.1 -5.8 97.6 0 C76.1 5.8 33.2 9.7 0 0 Z"
+                transform="translate(107.8 -40.1) rotate(-68.2)"
+              />
+              <path
+                d="M0 0 C34.9 -10.2 80.1 -6.1 102.6 0 C80.1 6.1 34.9 10.2 0 0 Z"
+                transform="translate(130.8 -45.6) rotate(40.1)"
+              />
+              <path
+                d="M0 0 C34.9 -10.2 80.1 -6.1 102.6 0 C80.1 6.1 34.9 10.2 0 0 Z"
+                transform="translate(130.8 -45.6) rotate(-64.8)"
+              />
+              <path
+                d="M0 0 C36.2 -10.5 82.9 -6.3 106.3 0 C82.9 6.3 36.2 10.5 0 0 Z"
+                transform="translate(154.2 -50.2) rotate(41.4)"
+              />
+              <path
+                d="M0 0 C36.2 -10.5 82.9 -6.3 106.3 0 C82.9 6.3 36.2 10.5 0 0 Z"
+                transform="translate(154.2 -50.2) rotate(-61.3)"
+              />
+              <path
+                d="M0 0 C36.9 -10.7 84.7 -6.4 108.6 0 C84.7 6.4 36.9 10.7 0 0 Z"
+                transform="translate(177.8 -53.8) rotate(42.7)"
+              />
+              <path
+                d="M0 0 C36.9 -10.7 84.7 -6.4 108.6 0 C84.7 6.4 36.9 10.7 0 0 Z"
+                transform="translate(177.8 -53.8) rotate(-57.7)"
+              />
+              <path
+                d="M0 0 C37.2 -10.8 85.4 -6.5 109.4 0 C85.4 6.5 37.2 10.8 0 0 Z"
+                transform="translate(201.5 -56.4) rotate(44.1)"
+              />
+              <path
+                d="M0 0 C37.2 -10.8 85.4 -6.5 109.4 0 C85.4 6.5 37.2 10.8 0 0 Z"
+                transform="translate(201.5 -56.4) rotate(-54.1)"
+              />
+              <path
+                d="M0 0 C37.0 -10.8 84.8 -6.5 108.8 0 C84.8 6.5 37.0 10.8 0 0 Z"
+                transform="translate(225.4 -58.0) rotate(45.6)"
+              />
+              <path
+                d="M0 0 C37.0 -10.8 84.8 -6.5 108.8 0 C84.8 6.5 37.0 10.8 0 0 Z"
+                transform="translate(225.4 -58.0) rotate(-50.4)"
+              />
+              <path
+                d="M0 0 C36.3 -10.6 83.2 -6.3 106.6 0 C83.2 6.3 36.3 10.6 0 0 Z"
+                transform="translate(249.3 -58.4) rotate(47.2)"
+              />
+              <path
+                d="M0 0 C36.3 -10.6 83.2 -6.3 106.6 0 C83.2 6.3 36.3 10.6 0 0 Z"
+                transform="translate(249.3 -58.4) rotate(-46.6)"
+              />
+              <path
+                d="M0 0 C35.1 -10.2 80.4 -6.1 103.1 0 C80.4 6.1 35.1 10.2 0 0 Z"
+                transform="translate(273.3 -57.7) rotate(48.8)"
+              />
+              <path
+                d="M0 0 C35.1 -10.2 80.4 -6.1 103.1 0 C80.4 6.1 35.1 10.2 0 0 Z"
+                transform="translate(273.3 -57.7) rotate(-42.7)"
+              />
+              <path
+                d="M0 0 C33.4 -9.7 76.6 -5.8 98.2 0 C76.6 5.8 33.4 9.7 0 0 Z"
+                transform="translate(297.2 -55.8) rotate(50.6)"
+              />
+              <path
+                d="M0 0 C33.4 -9.7 76.6 -5.8 98.2 0 C76.6 5.8 33.4 9.7 0 0 Z"
+                transform="translate(297.2 -55.8) rotate(-38.8)"
+              />
+              <path
+                d="M0 0 C31.3 -9.1 71.8 -5.5 92.1 0 C71.8 5.5 31.3 9.1 0 0 Z"
+                transform="translate(320.9 -52.8) rotate(52.4)"
+              />
+              <path
+                d="M0 0 C31.3 -9.1 71.8 -5.5 92.1 0 C71.8 5.5 31.3 9.1 0 0 Z"
+                transform="translate(320.9 -52.8) rotate(-34.7)"
+              />
+              <path
+                d="M0 0 C28.9 -8.4 66.2 -5.0 84.9 0 C66.2 5.0 28.9 8.4 0 0 Z"
+                transform="translate(344.5 -48.5) rotate(54.4)"
+              />
+              <path
+                d="M0 0 C28.9 -8.4 66.2 -5.0 84.9 0 C66.2 5.0 28.9 8.4 0 0 Z"
+                transform="translate(344.5 -48.5) rotate(-30.5)"
+              />
+              <path
+                d="M0 0 C26.1 -7.6 59.9 -4.6 76.8 0 C59.9 4.6 26.1 7.6 0 0 Z"
+                transform="translate(367.8 -42.9) rotate(56.4)"
+              />
+              <path
+                d="M0 0 C26.1 -7.6 59.9 -4.6 76.8 0 C59.9 4.6 26.1 7.6 0 0 Z"
+                transform="translate(367.8 -42.9) rotate(-26.3)"
+              />
+              <path
+                d="M0 0 C23.1 -6.7 53.0 -4.0 68.0 0 C53.0 4.0 23.1 6.7 0 0 Z"
+                transform="translate(390.9 -36.0) rotate(58.6)"
+              />
+              <path
+                d="M0 0 C23.1 -6.7 53.0 -4.0 68.0 0 C53.0 4.0 23.1 6.7 0 0 Z"
+                transform="translate(390.9 -36.0) rotate(-21.9)"
+              />
+              <path
+                d="M0 0 C20.0 -5.8 45.8 -3.5 58.7 0 C45.8 3.5 20.0 5.8 0 0 Z"
+                transform="translate(413.5 -27.7) rotate(60.9)"
+              />
+              <path
+                d="M0 0 C20.0 -5.8 45.8 -3.5 58.7 0 C45.8 3.5 20.0 5.8 0 0 Z"
+                transform="translate(413.5 -27.7) rotate(-17.4)"
+              />
+              <path
+                d="M0 0 C16.7 -4.9 38.4 -2.9 49.3 0 C38.4 2.9 16.7 4.9 0 0 Z"
+                transform="translate(435.8 -18.0) rotate(63.2)"
+              />
+              <path
+                d="M0 0 C16.7 -4.9 38.4 -2.9 49.3 0 C38.4 2.9 16.7 4.9 0 0 Z"
+                transform="translate(435.8 -18.0) rotate(-12.8)"
+              />
+            </g>
+            <g id="bt-euc">
+              <path
+                class="bt-stem"
+                d="M0.0 0.0 C58.0 -96.0 140.0 -178.0 176.0 -292.0"
+                stroke-width="2.0"
+              />
+              <path
+                d="M0 0 C6.6 -20.0 41.4 -18.4 47.0 -1.6 C41.4 16.8 6.6 20.0 0 0 Z"
+                transform="translate(10.7 -17.1) rotate(-121.3)"
+              />
+              <path
+                d="M0 0 C7.1 -21.7 44.7 -19.9 50.9 -1.7 C44.7 18.2 7.1 21.7 0 0 Z"
+                transform="translate(24.8 -38.5) rotate(7.4)"
+              />
+              <path
+                d="M0 0 C7.5 -22.9 47.4 -21.1 53.9 -1.8 C47.4 19.3 7.5 22.9 0 0 Z"
+                transform="translate(39.4 -59.5) rotate(-117.1)"
+              />
+              <path
+                d="M0 0 C7.8 -23.8 49.2 -21.9 56.0 -1.9 C49.2 20.0 7.8 23.8 0 0 Z"
+                transform="translate(54.3 -80.4) rotate(7.2)"
+              />
+              <path
+                d="M0 0 C8.0 -24.3 50.2 -22.4 57.1 -1.9 C50.2 20.4 8.0 24.3 0 0 Z"
+                transform="translate(69.4 -101.3) rotate(-114.9)"
+              />
+              <path
+                d="M0 0 C8.0 -24.3 50.3 -22.4 57.2 -1.9 C50.3 20.4 8.0 24.3 0 0 Z"
+                transform="translate(84.4 -122.3) rotate(5.1)"
+              />
+              <path
+                d="M0 0 C7.9 -23.9 49.5 -22.0 56.2 -1.9 C49.5 20.1 7.9 23.9 0 0 Z"
+                transform="translate(99.1 -143.5) rotate(-114.6)"
+              />
+              <path
+                d="M0 0 C7.6 -23.1 47.8 -21.3 54.3 -1.9 C47.8 19.4 7.6 23.1 0 0 Z"
+                transform="translate(113.5 -165.0) rotate(1.1)"
+              />
+              <path
+                d="M0 0 C7.2 -21.9 45.3 -20.2 51.4 -1.8 C45.3 18.4 7.2 21.9 0 0 Z"
+                transform="translate(127.3 -187.0) rotate(-116.3)"
+              />
+              <path
+                d="M0 0 C6.7 -20.3 42.0 -18.7 47.8 -1.6 C42.0 17.1 6.7 20.3 0 0 Z"
+                transform="translate(140.2 -209.5) rotate(-4.8)"
+              />
+              <path
+                d="M0 0 C6.1 -18.5 38.1 -17.0 43.3 -1.5 C38.1 15.5 6.1 18.5 0 0 Z"
+                transform="translate(152.2 -232.8) rotate(-119.8)"
+              />
+              <path
+                d="M0 0 C5.4 -16.3 33.7 -15.0 38.3 -1.3 C33.7 13.7 5.4 16.3 0 0 Z"
+                transform="translate(163.1 -256.8) rotate(-12.5)"
+              />
+              <path
+                d="M0 0 C4.6 -14.0 28.9 -12.9 32.9 -1.1 C28.9 11.8 4.6 14.0 0 0 Z"
+                transform="translate(172.6 -281.8) rotate(-125.0)"
+              />
+            </g>
+            <g id="bt-sprig">
+              <path
+                class="bt-stem"
+                d="M0.0 0.0 C24.0 -120.0 96.0 -206.0 178.0 -262.0"
+                stroke-width="1.8"
+              />
+              <path
+                d="M0 0 C14.9 -8.0 34.1 -4.8 43.8 0 C34.1 4.8 14.9 8.0 0 0 Z"
+                transform="translate(8.6 -35.0) rotate(-125.7)"
+              />
+              <path
+                d="M0 0 C15.8 -8.5 36.3 -5.1 46.6 0 C36.3 5.1 15.8 8.5 0 0 Z"
+                transform="translate(20.8 -70.3) rotate(-18.5)"
+              />
+              <path
+                d="M0 0 C16.4 -8.7 37.5 -5.2 48.1 0 C37.5 5.2 16.4 8.7 0 0 Z"
+                transform="translate(35.8 -103.4) rotate(-110.5)"
+              />
+              <path
+                d="M0 0 C16.4 -8.8 37.7 -5.3 48.3 0 C37.7 5.3 16.4 8.8 0 0 Z"
+                transform="translate(53.3 -134.2) rotate(-12.6)"
+              />
+              <path
+                d="M0 0 C16.1 -8.6 36.8 -5.2 47.2 0 C36.8 5.2 16.1 8.6 0 0 Z"
+                transform="translate(73.0 -162.7) rotate(-96.0)"
+              />
+              <path
+                d="M0 0 C15.2 -8.2 35.0 -4.9 44.8 0 C35.0 4.9 15.2 8.2 0 0 Z"
+                transform="translate(94.6 -189.1) rotate(-7.5)"
+              />
+              <path
+                d="M0 0 C14.0 -7.5 32.2 -4.5 41.3 0 C32.2 4.5 14.0 7.5 0 0 Z"
+                transform="translate(117.9 -213.2) rotate(-82.4)"
+              />
+              <path
+                d="M0 0 C12.5 -6.7 28.7 -4.0 36.8 0 C28.7 4.0 12.5 6.7 0 0 Z"
+                transform="translate(142.5 -235.2) rotate(-3.4)"
+              />
+              <path
+                d="M0 0 C10.8 -5.8 24.7 -3.5 31.7 0 C24.7 3.5 10.8 5.8 0 0 Z"
+                transform="translate(168.2 -255.1) rotate(-69.7)"
+              />
+            </g>
+          </defs>
+        </svg>
+
+        <div class="hero-botanicals" aria-hidden="true">
+          <div class="bt-layer bt-far" data-parallax="0.26" data-pointer="6">
+            <svg
+              class="bt-slot bt-bl"
+              viewBox="0 0 1440 760"
+              preserveAspectRatio="xMinYMax slice"
+            >
+              <use
+                href="#bt-fern"
+                transform="translate(-150 740) rotate(-26) scale(1.3)"
+              />
+            </svg>
+            <svg
+              class="bt-slot bt-tr"
+              viewBox="0 0 1440 760"
+              preserveAspectRatio="xMaxYMin slice"
+            >
+              <use
+                href="#bt-fern"
+                transform="translate(1600 -50) rotate(150) scale(1.25)"
+              />
+            </svg>
+          </div>
+          <div class="bt-layer bt-mid" data-parallax="0.10" data-pointer="12">
+            <svg
+              class="bt-slot bt-bl"
+              viewBox="0 0 1440 760"
+              preserveAspectRatio="xMinYMax slice"
+            >
+              <use
+                href="#bt-fern"
+                transform="translate(-70 520) rotate(-12) scale(0.9)"
+              />
+              <use
+                href="#bt-sprig"
+                transform="translate(430 810) rotate(-6) scale(1.05)"
+              />
+            </svg>
+            <svg
+              class="bt-slot bt-br"
+              viewBox="0 0 1440 760"
+              preserveAspectRatio="xMaxYMax slice"
+            >
+              <use
+                href="#bt-euc"
+                transform="translate(1255 810) rotate(10) scale(0.95)"
+              />
+            </svg>
+          </div>
+          <div class="bt-layer bt-near" data-parallax="-0.16" data-pointer="20">
+            <svg
+              class="bt-slot bt-bl"
+              viewBox="0 0 1440 760"
+              preserveAspectRatio="xMinYMax slice"
+            >
+              <use
+                href="#bt-fern"
+                transform="translate(-30 780) rotate(-16) scale(0.85)"
+              />
+            </svg>
+            <svg
+              class="bt-slot bt-br"
+              viewBox="0 0 1440 760"
+              preserveAspectRatio="xMaxYMax slice"
+            >
+              <use
+                href="#bt-euc"
+                transform="translate(1410 800) rotate(20) scale(0.85)"
+              />
+              <use
+                href="#bt-sprig"
+                transform="translate(1030 830) rotate(8) scale(0.8)"
+              />
+            </svg>
+          </div>
         </div>
-        <div class="col-sm-6 image-container">
-          <img class="img-fluid" src="portrait.png" alt="" />
+
+        <div class="hero-inner">
+          <div class="hero-copy" data-parallax="0.18" data-fade="0.85">
+            <h1>Jessica Mychal Moore</h1>
+            <p class="hero-role">Application Design Engineer</p>
+            <p class="hero-quote">
+              Code by code, I turn my determination into innovation, and my
+              perseverance into progress.
+            </p>
+            <div class="hero-cta">
+              <a class="btn-primary-cta" href="#capabilities">
+                <i class="bi bi-diagram-3" aria-hidden="true"></i>
+                What I do
+              </a>
+              <a class="btn-ghost-cta" href="#contact">
+                <i class="bi bi-envelope" aria-hidden="true"></i>
+                Get in touch
+              </a>
+            </div>
+            <p class="hero-meta">
+              <span
+                ><i class="bi bi-geo-alt-fill" aria-hidden="true"></i>
+                Nashville, Tennessee</span
+              >
+              <span
+                ><i class="bi bi-cloud-fill" aria-hidden="true"></i> Salesforce
+                for nonprofits</span
+              >
+            </p>
+          </div>
+          <div class="hero-portrait" data-parallax="0.09" data-pointer="-9">
+            <img
+              src="portrait.webp"
+              width="400"
+              height="400"
+              alt="Jessica Mychal Moore, smiling, wearing an olive green blazer"
+              fetchpriority="high"
+              decoding="async"
+            />
+          </div>
         </div>
-      </div>
-    </div>
-    <hr />
-    <section class="content">
-      <section id="about" class="container about-container">
-        <h1>Code with a Cause</h1>
-        <br />
-        <p><strong>Can coffee make you a better developer?</strong></p>
-        <p>Now that I've got your attention... ☕</p>
-
-        <p>
-          I’m <strong>Jess</strong> — an Application Design Engineer at
-          <a href="https://www.undaunted.llc/" target="_blank"
-            >Undaunted Consulting</a
-          >. Based in Nashville, Tennessee, I specialize in architecting
-          Salesforce solutions specifically for <strong>nonprofits</strong>. I
-          don't just build software; I build tools that help world-changers do
-          more good, more efficiently.
-        </p>
-
-        <p>
-          My approach is rooted in a unique intersection of skills: I paired a
-          <strong
-            >Project Management degree from Arizona State University</strong
-          >
-          with a deep background in full-stack development. This means I
-          understand the "big picture" of a nonprofit’s mission while having the
-          technical expertise to build the systems that support it. To me,
-          technology is a force multiplier for social impact.
-        </p>
-
-        <p>
-          When I’m off the clock, I’m usually grounded by the things that matter
-          most: spending quality time with my <strong>family</strong>, keeping
-          up with my <strong>dog</strong>, or tending to my ever-growing
-          collection of <strong>plants</strong>. Whether I’m nurturing a garden
-          or a complex codebase, I believe that growth requires patience, a
-          solid foundation, and a lot of heart.
-        </p>
       </section>
-      <section id="capabilities" class="capabilities-container container">
-        <div class="row text-center mb-5">
-          <div class="col-12">
-            <h1 class="section-title">Strategic Capabilities</h1>
-            <p class="lead subtitle">
+
+      <div class="content">
+        <!-- =================== ABOUT =================== -->
+        <section id="about" class="container about-container">
+          <div class="section-head" data-reveal>
+            <h2>Code with a Cause</h2>
+          </div>
+
+          <p class="about-hook" data-reveal>
+            Can coffee make you a better developer?
+          </p>
+          <p data-reveal>Now that I've got your attention… ☕</p>
+
+          <p data-reveal>
+            I'm <strong>Jessica</strong> — an Application Design Engineer at
+            <a
+              href="https://www.undaunted.llc/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Undaunted Consulting</a
+            >. Based in Nashville, Tennessee, I specialize in architecting
+            Salesforce solutions specifically for <strong>nonprofits</strong>. I
+            don't just build software; I build tools that help world-changers do
+            more good, more efficiently.
+          </p>
+
+          <p data-reveal>
+            My approach is rooted in a unique intersection of skills: I paired a
+            <strong
+              >Project Management degree from Arizona State University</strong
+            >
+            with a deep background in full-stack development. This means I
+            understand the "big picture" of a nonprofit's mission while having
+            the technical expertise to build the systems that support it. To me,
+            technology is a force multiplier for social impact.
+          </p>
+
+          <p data-reveal>
+            When I'm off the clock, I'm usually grounded by the things that
+            matter most: spending quality time with my <strong>family</strong>,
+            keeping up with my <strong>dog</strong>, or tending to my
+            ever-growing collection of <strong>plants</strong>. Whether I'm
+            nurturing a garden or a complex codebase, I believe that growth
+            requires patience, a solid foundation, and a lot of heart.
+          </p>
+        </section>
+
+        <!-- =================== IMPACT STATS =================== -->
+        <section
+          class="container stats-strip"
+          aria-label="Impact by the numbers"
+        >
+          <div class="stats-grid" data-reveal>
+            <div class="stat">
+              <span class="stat-num" data-count="3"
+                ><span class="stat-value">3</span
+                ><span class="stat-suffix">+</span></span
+              >
+              <span class="stat-label"
+                >Years turning strategy into software</span
+              >
+            </div>
+            <div class="stat">
+              <span class="stat-num" data-count="10"
+                ><span class="stat-value">10</span
+                ><span class="stat-suffix">+</span></span
+              >
+              <span class="stat-label">Nonprofit organizations supported</span>
+            </div>
+            <div class="stat">
+              <span class="stat-num" aria-hidden="true">
+                <i class="bi bi-patch-check-fill"></i>
+              </span>
+              <span class="stat-label">Salesforce certified</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- =================== CAPABILITIES =================== -->
+        <section id="capabilities" class="container capabilities-container">
+          <div class="section-head" data-reveal>
+            <h2>Strategic Capabilities</h2>
+            <p class="subtitle">
               Bridging the gap between high-level project strategy and technical
               execution.
             </p>
           </div>
-        </div>
 
-        <div class="row g-4">
-          <div class="col-lg-4 col-md-6 col-sm-12">
-            <div class="capability-card h-100 shadow-sm">
-              <div class="card-body text-center">
-                <div class="icon-box mb-3">
-                  <i class="bi bi-diagram-3-fill"></i>
+          <div class="row g-4 align-items-stretch">
+            <div class="col-lg-4 col-md-6">
+              <div class="capability-card" data-reveal data-reveal-group="cap">
+                <div class="text-center">
+                  <div class="icon-box">
+                    <i class="bi bi-diagram-3-fill" aria-hidden="true"></i>
+                  </div>
+                  <h3>Project Strategy</h3>
+                  <p>
+                    With my <strong>Project Management degree from ASU</strong>,
+                    I bring a structured approach to the SDLC, ensuring
+                    stakeholder alignment and efficient delivery cycles.
+                  </p>
                 </div>
-                <h3>Project Strategy</h3>
-                <p>
-                  With my <strong>Project Management degree from ASU</strong>, I
-                  bring a structured approach to the SDLC, ensuring stakeholder
-                  alignment and efficient delivery cycles.
-                </p>
                 <ul class="capability-list">
                   <li>
-                    <i class="bi bi-check-circle-fill"></i> Agile Methodology
+                    <i class="bi bi-check-circle-fill" aria-hidden="true"></i>
+                    Agile Methodology
                   </li>
                   <li>
-                    <i class="bi bi-check-circle-fill"></i> Stakeholder
-                    Alignment
+                    <i class="bi bi-check-circle-fill" aria-hidden="true"></i>
+                    Stakeholder Alignment
                   </li>
                   <li>
-                    <i class="bi bi-check-circle-fill"></i> Requirements
-                    Gathering
+                    <i class="bi bi-check-circle-fill" aria-hidden="true"></i>
+                    Requirements Gathering
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+              <div
+                class="capability-card highlight-card"
+                data-reveal
+                data-reveal-group="cap"
+              >
+                <div class="text-center">
+                  <div class="icon-box">
+                    <i class="bi bi-cloud-fill" aria-hidden="true"></i>
+                  </div>
+                  <h3>Salesforce Design</h3>
+                  <p>
+                    At <strong>Undaunted Consulting</strong>, I architect custom
+                    solutions that empower nonprofits. I build tools that turn
+                    complex data into actionable impact.
+                  </p>
+                </div>
+                <ul class="capability-list">
+                  <li>
+                    <i class="bi bi-check-circle-fill" aria-hidden="true"></i>
+                    Apex &amp; LWC Development
+                  </li>
+                  <li>
+                    <i class="bi bi-check-circle-fill" aria-hidden="true"></i>
+                    Flow &amp; Process Automation
+                  </li>
+                  <li>
+                    <i class="bi bi-check-circle-fill" aria-hidden="true"></i>
+                    NPSP &amp; Data Architecture
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+              <div class="capability-card" data-reveal data-reveal-group="cap">
+                <div class="text-center">
+                  <div class="icon-box">
+                    <i class="bi bi-code-slash" aria-hidden="true"></i>
+                  </div>
+                  <h3>Full-Stack Dev</h3>
+                  <p>
+                    My foundation in
+                    <strong>React and Ruby on Rails</strong> allows me to build
+                    beyond the Salesforce UI, creating integrated, modern web
+                    experiences.
+                  </p>
+                </div>
+                <ul class="capability-list">
+                  <li>
+                    <i class="bi bi-check-circle-fill" aria-hidden="true"></i>
+                    React Component Design
+                  </li>
+                  <li>
+                    <i class="bi bi-check-circle-fill" aria-hidden="true"></i>
+                    API Integrations
+                  </li>
+                  <li>
+                    <i class="bi bi-check-circle-fill" aria-hidden="true"></i>
+                    Responsive UI/UX
                   </li>
                 </ul>
               </div>
             </div>
           </div>
+        </section>
 
-          <div class="col-lg-4 col-md-6 col-sm-12">
-            <div class="capability-card h-100 shadow-sm highlight-card">
-              <div class="card-body text-center">
-                <div class="icon-box mb-3">
-                  <i class="bi bi-cloud-fill"></i>
-                </div>
-                <h3>Salesforce Design</h3>
-                <p>
-                  At <strong>Undaunted Consulting</strong>, I architect custom
-                  solutions that empower nonprofits. I build tools that turn
-                  complex data into actionable impact.
-                </p>
-                <ul class="capability-list">
-                  <li>
-                    <i class="bi bi-check-circle-fill"></i> Apex & LWC
-                    Development
-                  </li>
-                  <li>
-                    <i class="bi bi-check-circle-fill"></i> Flow & Process
-                    Automation
-                  </li>
-                  <li>
-                    <i class="bi bi-check-circle-fill"></i> NPSP & Data
-                    Architecture
-                  </li>
-                </ul>
-              </div>
-            </div>
+        <!-- =================== TOOLKIT =================== -->
+        <section id="toolkit" class="container skills-container">
+          <div class="section-head" data-reveal>
+            <h2>My toolkit includes</h2>
           </div>
 
-          <div class="col-lg-4 col-md-12 col-sm-12">
-            <div class="capability-card h-100 shadow-sm">
-              <div class="card-body text-center">
-                <div class="icon-box mb-3">
-                  <i class="bi bi-code-slash"></i>
-                </div>
-                <h3>Full-Stack Dev</h3>
-                <p>
-                  My foundation in
-                  <strong>React and Ruby on Rails</strong> allows me to build
-                  beyond the Salesforce UI, creating integrated, modern web
-                  experiences.
-                </p>
-                <ul class="capability-list">
-                  <li>
-                    <i class="bi bi-check-circle-fill"></i> React Component
-                    Design
-                  </li>
-                  <li>
-                    <i class="bi bi-check-circle-fill"></i> API Integrations
-                  </li>
-                  <li>
-                    <i class="bi bi-check-circle-fill"></i> Responsive UI/UX
-                  </li>
-                </ul>
-              </div>
+          <div class="toolkit-grid">
+            <div class="tool-card" data-reveal data-reveal-group="tool">
+              <span>Salesforce</span>
+              <img
+                class="skill-icon"
+                src="assets/skills/salesforce.svg"
+                width="30"
+                height="30"
+                alt=""
+                loading="lazy"
+              />
+            </div>
+            <div class="tool-card" data-reveal data-reveal-group="tool">
+              <span>Flow Automation</span>
+              <i class="bi bi-gear-wide-connected" aria-hidden="true"></i>
+            </div>
+            <div class="tool-card" data-reveal data-reveal-group="tool">
+              <span>Apex</span>
+              <i class="bi bi-braces" aria-hidden="true"></i>
+            </div>
+            <div class="tool-card" data-reveal data-reveal-group="tool">
+              <span>JavaScript</span>
+              <img
+                class="skill-icon"
+                src="assets/skills/javascript.svg"
+                width="30"
+                height="30"
+                alt=""
+                loading="lazy"
+              />
+            </div>
+            <div class="tool-card" data-reveal data-reveal-group="tool">
+              <span>React</span>
+              <img
+                class="skill-icon"
+                src="assets/skills/react.svg"
+                width="30"
+                height="30"
+                alt=""
+                loading="lazy"
+              />
+            </div>
+            <div class="tool-card" data-reveal data-reveal-group="tool">
+              <span>Ruby on Rails</span>
+              <img
+                class="skill-icon"
+                src="assets/skills/ruby.svg"
+                width="30"
+                height="30"
+                alt=""
+                loading="lazy"
+              />
+            </div>
+            <div class="tool-card" data-reveal data-reveal-group="tool">
+              <span>CSS</span>
+              <img
+                class="skill-icon"
+                src="assets/skills/css.svg"
+                width="30"
+                height="30"
+                alt=""
+                loading="lazy"
+              />
+            </div>
+            <div class="tool-card" data-reveal data-reveal-group="tool">
+              <span>Bootstrap</span>
+              <img
+                class="skill-icon"
+                src="assets/skills/bootstrap.svg"
+                width="30"
+                height="30"
+                alt=""
+                loading="lazy"
+              />
+            </div>
+            <div class="tool-card" data-reveal data-reveal-group="tool">
+              <span>Tailwind CSS</span>
+              <img
+                class="skill-icon"
+                src="assets/skills/tailwind-css.svg"
+                width="30"
+                height="30"
+                alt=""
+                loading="lazy"
+              />
             </div>
           </div>
-        </div>
-      </section>
-      <section class="skills-container container">
-        <h1>My toolkit includes:</h1>
-        <div class="card-container">
-          <div class="row">
-            <div class="g-5 col-lg-4 col-md-4 col-sm-12 hvr-grow">
-              <div class="card h-100">
-                <div
-                  class="d-flex justify-content-between card-body align-items-center"
+        </section>
+
+        <!-- =================== CONTACT =================== -->
+        <section id="contact" class="container contact-container">
+          <div class="section-head" data-reveal>
+            <h2>Let's turn ideas into reality together</h2>
+            <p class="subtitle">
+              Whether you're a nonprofit with a data problem or a team looking
+              for an engineer, I'd like to hear from you.
+            </p>
+          </div>
+
+          <div class="contact-grid">
+            <a
+              class="contact-card"
+              href="https://www.linkedin.com/in/jessmoore13"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span>LinkedIn</span>
+              <i class="bi bi-linkedin" aria-hidden="true"></i>
+            </a>
+            <a
+              class="contact-card"
+              href="https://github.com/jmychalm13"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span>GitHub</span>
+              <i class="bi bi-github" aria-hidden="true"></i>
+            </a>
+            <a class="contact-card" href="mailto:jessica@undaunted.llc">
+              <span>Email</span>
+              <i class="bi bi-envelope-fill" aria-hidden="true"></i>
+            </a>
+          </div>
+
+          <div class="contact-form-wrap" data-reveal>
+            <h3>Send me a message</h3>
+            <form
+              action="https://formsubmit.co/jmychalm13@gmail.com"
+              method="POST"
+              target="_blank"
+            >
+              <div class="form-field">
+                <label for="name">Your name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="name"
+                  name="name"
+                  placeholder="Jane Doe"
+                  autocomplete="name"
+                  required
+                />
+              </div>
+
+              <div class="form-field">
+                <label for="email">Your email address</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  name="email"
+                  placeholder="jane@example.org"
+                  autocomplete="email"
+                  aria-describedby="email-hint"
+                  required
+                />
+                <small class="form-hint" id="email-hint"
+                  >I'll never share your email address with anyone else.</small
                 >
-                  <strong>Salesforce</strong>
-                  <img
-                    class="skill-icon"
-                    src="https://www.vectorlogo.zone/logos/salesforce/salesforce-icon.svg"
-                    alt="Salesforce"
-                  />
-                </div>
               </div>
-            </div>
 
-            <div class="g-5 col-lg-4 col-md-4 col-sm-12 hvr-grow">
-              <div class="card h-100">
-                <div
-                  class="d-flex justify-content-between card-body align-items-center"
-                >
-                  <strong>Flow Automation</strong>
-                  <i
-                    class="bi bi-gear-wide-connected"
-                    style="font-size: 1.8rem"
-                  ></i>
-                </div>
+              <div class="form-field">
+                <label for="message">Your message</label>
+                <textarea
+                  class="form-control"
+                  id="message"
+                  name="message"
+                  rows="7"
+                  placeholder="Tell me what you're working on…"
+                  required
+                ></textarea>
               </div>
-            </div>
 
-            <div class="g-5 col-lg-4 col-md-4 col-sm-12 hvr-grow">
-              <div class="card h-100">
-                <div
-                  class="d-flex justify-content-between card-body align-items-center"
-                >
-                  JavaScript
-                  <img
-                    class="skill-icon"
-                    src="assets/skills/javascript.svg"
-                    alt="JS"
-                  />
-                </div>
+              <div class="form-actions">
+                <button class="btn-primary-cta" type="submit">
+                  <i class="bi bi-send-fill" aria-hidden="true"></i>
+                  Send me your message
+                </button>
               </div>
-            </div>
+            </form>
           </div>
-        </div>
-      </section>
-      <section id="projects" class="projects-container">
-        <h1>Projects</h1>
-        <div class="container card-container">
-          <div class="row project-row">
-            <div class="g-5 col-12 col-md-6 hvr-grow">
-              <a
-                href="https://main.d1iw165sp6kany.amplifyapp.com"
-                target="_blank"
-              >
-                <div class="card h-100">
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col-12 text-center">
-                        <img
-                          class="thumbnail"
-                          src="assets/project_images/budget_app_screenshot.png"
-                          alt="budget thumbnail"
-                        />
-                      </div>
-                      <div class="col-12">
-                        <div class="project-description text-center">
-                          <p class="description-title">Budget App</p>
-                          <p class="description-text">
-                            An app for setting and tracking your budget. <br />
-                            Built with HTML, CSS, JavaScript
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </a>
-            </div>
-            <div class="g-5 col-12 col-xl-6 col-md-6 hvr-grow">
-              <a
-                href="https://main.dtrabm1q2h984.amplifyapp.com"
-                target="_blank"
-              >
-                <div class="card h-100">
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col-12 text-center">
-                        <img
-                          class="thumbnail"
-                          src="assets/project_images/pokedex_screenshot.png"
-                          alt="Pokedex thumbnail"
-                        />
-                      </div>
-                      <div class="col-12">
-                        <div class="project-description text-center">
-                          <p class="desription-title">Pokedex</p>
-                          <p class="description-text">
-                            A fun collection of Pokemon! Built with Vanilla JS
-                            and a Pokemon API.
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </a>
-            </div>
-          </div>
-          <div class="row">
-            <div class="g-5 col-12 col-md-6 hvr-grow">
-              <a
-                href="https://main.drjpjrb3ellue.amplifyapp.com"
-                target="_blank"
-              >
-                <div class="card h-100">
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col-12 text-center">
-                        <img
-                          class="thumbnail"
-                          src="assets/project_images/speech_reader_screenshot.png"
-                          alt="speech reader thumbnail"
-                        />
-                      </div>
-                      <div class="col-12">
-                        <div class="project-description text-center">
-                          <p class="description-title">Speech Reader</p>
-                          <p class="description-text">
-                            An app that utilizes the built-in JS Web Speech API.
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </a>
-            </div>
-            <div class="g-5 col-12 col-md-6 hvr-grow">
-              <a
-                href="https://main.d30bho10he44a1.amplifyapp.com"
-                target="_blank"
-              >
-                <div class="card h-100">
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col-12 text-center">
-                        <img
-                          class="thumbnail"
-                          src="assets/project_images/rock_paper_scissors_spock_screenshot.png"
-                          alt="Rock, Paper, Scissors, Spock thumbnail"
-                        />
-                      </div>
-                      <div class="col-12">
-                        <div class="project-description text-center">
-                          <p class="description-title">
-                            Rock, Paper, Scissors, Spock
-                          </p>
-                          <p class="description-text">
-                            A fun rendition of the classic Rock, Paper, Scissors
-                            game. Built with JavaScript.
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </a>
-            </div>
-            <div class="g-5 col-12 col-md-6 hvr-grow">
-              <a
-                href="https://better-ims-frontend.onrender.com"
-                target="_blank"
-              >
-                <div class="card h-100">
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col-12 text-center">
-                        <img
-                          class="thumbnail"
-                          src="assets/project_images/better_ims_screenshot.png"
-                          alt="Better IMS thumbnail"
-                        />
-                      </div>
-                      <div class="col-12">
-                        <div class="project-description text-center">
-                          <p class="description-title">Better IMS</p>
-                          <p class="description-text">
-                            An inventory management app.<br />Built with a Ruby
-                            on Rails backend and React frontend.
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </a>
-            </div>
-            <div class="g-5 col-12 col-md-6 hvr-grow">
-              <a
-                href="https://main.d3s9yimw48iscy.amplifyapp.com"
-                target="_blank"
-              >
-                <div class="card">
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col-12 text-center">
-                        <img
-                          class="thumbnail"
-                          src="assets/project_images/notes_app_screenshot.png"
-                          alt="notes app thumbnail"
-                        />
-                      </div>
-                      <div class="col-12">
-                        <div class="project-description text-center">
-                          <p class="description-title">Notes App</p>
-                          <p class="description-text">
-                            An app to help you keep up with your busy life and
-                            all your lists in one place! Built with JavaScript.
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section id="contact" class="container contact-container pb-5">
-        <h1>Let's turn ideas into reality together!</h1>
-        <div class="contact-icons">
-          <div class="row m-auto">
-            <div class="g-4 col-12 col-lg-4 col-md-4 col-sm-12 hvr-grow">
-              <div class="card">
-                <div class="d-flex justify-content-between card-body">
-                  <a class="" href="https://www.linkedin.com/in/jessmoore13"
-                    >LinkedIn</a
-                  >
-                  <a href="https://www.linkedin.com/in/jessmoore13"
-                    ><i class="bi bi-linkedin"></i
-                  ></a>
-                </div>
-              </div>
-            </div>
-            <div class="g-4 col-12 col-lg-4 col-md-4 hvr-grow">
-              <div class="card">
-                <div class="d-flex justify-content-between card-body">
-                  <a class="" href="https://github.com/jmychalm13">Github</a>
-                  <a href="https://github.com/jmychalm13">
-                    <i class="bi bi-github"></i>
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div class="g-4 col-lg-4 col-md-4 col-sm-12 hvr-grow">
-              <div class="card">
-                <div class="d-flex card-body justify-content-between">
-                  <a class="" href="#">Email</a>
-                  <a href="#"><i class="bi bi-envelope-fill"></i> </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="contact-form">
-          <div class="container">
-            <div class="row">
-              <h1>Contact Me!</h1>
-              <div class="card p-4">
-                <div class="card-body">
-                  <form
-                    action="https://formsubmit.co/jmychalm13@gmail.com"
-                    target="_blank"
-                    method="POST"
-                  >
-                    <div class="form-group mb-2">
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="name"
-                        placeholder="Your Name"
-                        name="name"
-                        required
-                      />
-                    </div>
-                    <div class="form-group">
-                      <input
-                        type="email"
-                        class="form-control"
-                        id="email"
-                        name="email"
-                        placeholder="Your Email Address"
-                        required
-                      />
-                      <small class="form-text text-muted"
-                        >I'll never share your email address with anyone
-                        else.</small
-                      >
-                    </div>
-                    <div class="form-group">
-                      <textarea
-                        name="message"
-                        rows="7"
-                        class="form-control"
-                        placeholder="Your message..."
-                      ></textarea>
-                    </div>
-                    <div class="button-container text-center">
-                      <button class="btn p-2 mt-4" type="submit">
-                        Send Me Your Message
-                      </button>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </section>
+        </section>
+      </div>
+    </main>
+
     <footer class="footer">
       <div class="container text-center">
-        <span
-          >&copy; 2026 JMo Creations | Rooted in Strategy. Growing for
-          Good.</span
-        >
+        <p class="mb-0">
+          &copy; 2026 JMo Creations &nbsp;|&nbsp;
+          <span class="footer-tag">Rooted in Strategy. Growing for Good.</span>
+        </p>
       </div>
     </footer>
+
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
       crossorigin="anonymous"
+      defer
     ></script>
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
   </body>
 </html>

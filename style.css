@@ -1,268 +1,1182 @@
-@import url("https://fonts.googleapis.com/css2?family=Lato&family=Playpen+Sans&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+/* ==========================================================================
+   Jess Mychal Moore — personal site
+   Rooted in Strategy. Growing for Good.
 
-/* --- 1. THEME VARIABLES --- */
+   Palette note: --brand is "Blazer Green", sampled from the olive blazer in
+   the headshot. Everything else is built around it.
+
+   1. Tokens          6. About            10. Contact
+   2. Dark theme      7. Stats            11. Footer
+   3. Base            8. Capabilities     12. Motion utilities
+   4. Nav / chrome    9. Toolkit          13. Reduced motion
+   5. Hero                                14. Responsive
+   ========================================================================== */
+
+/* --- 1. TOKENS ----------------------------------------------------------- */
 :root {
-  --accent-color: #3a4d39; /* Blazer Green */
-  --accent-light: rgba(
-    58,
-    77,
-    57,
-    0.2
-  ); /* Increased opacity for visible card background */
-  --text-light: #d7eadf;
-  --bg-gray: #777e7a;
+  /* brand */
+  --brand: #3a4d39;          /* Blazer Green */
+  --brand-deep: #2a3a29;     /* nav + footer surface */
+  --brand-tint: #e8efe7;     /* section washes, hover states */
+  --brand-soft: #f1f5f0;
+
+  /* plum accent — used sparingly: stat numbers, pill, primary CTA */
+  --accent: #6e4a73;         /* plum */
+  --accent-strong: #5c3d61;  /* text-safe on light surfaces */
+  --accent-tint: rgba(110, 74, 115, 0.1);
+  /* Never themed: these paint their own surface and always carry white text,
+     so a themed (lighter) value would drop the text to ~2.8:1. */
+  --accent-btn: #6e4a73;     /* white on this is 7.3:1 */
+  --brand-btn: #3a4d39;      /* white on this is 9.1:1 */
+
+  /* ink + surfaces */
+  --ink: #1c2321;
+  --ink-muted: #4a544d;
+  --surface: #ffffff;
+  --surface-sunk: #f7f9f6;
+  --border: #dde4da;
+
+  /* hero (stays dark-based in both themes — it reads as a cover) */
+  --hero-base: #223021;
+  --hero-ink: #eaf1e8;
+  --hero-ink-muted: #bcccb8;
+  /* Fixed light sage. Never themed: the surfaces it sits on are dark in both
+     light and dark mode, so a themed value would go unreadable in one. */
+  --hero-accent: #a3c79d;
+  --hero-accent-2: #c3a2c9;  /* light plum, for plum notes on dark surfaces */
+  /* botanicals: three depth layers, far to near, over a canopy wash */
+  --bot-far: #7fae79;
+  --bot-mid: #9ccb95;
+  --bot-near: #d3e8cd;
+  --bot-far-o: 0.22;
+  --bot-mid-o: 0.27;
+  --bot-near-o: 0.40;
+  --hero-wash: rgba(76, 112, 72, 0.62);   /* light through the canopy */
+  --hero-shade: rgba(11, 16, 12, 0.72);   /* settles the lower edge */
+  --hero-glow: rgba(94, 138, 90, 0.5);    /* halo behind the portrait */
+
+  /* type */
+  --font-body: "Lato", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-head: "Montserrat", system-ui, -apple-system, sans-serif;
+  --step-xs: 0.8125rem;
+  --step-s: 0.9375rem;
+  --step-0: clamp(1rem, 0.97rem + 0.15vw, 1.0625rem);
+  --step-1: clamp(1.125rem, 1.07rem + 0.28vw, 1.3125rem);
+  --step-2: clamp(1.375rem, 1.24rem + 0.66vw, 1.75rem);
+  --step-3: clamp(1.75rem, 1.5rem + 1.2vw, 2.5rem);
+  --step-4: clamp(2.25rem, 1.75rem + 2.4vw, 3.75rem);
+
+  /* space */
+  --space-2xs: 0.375rem;
+  --space-xs: 0.625rem;
+  --space-s: 1rem;
+  --space-m: 1.5rem;
+  --space-l: 2.5rem;
+  --space-xl: 4rem;
+  --section-y: clamp(3.5rem, 2rem + 6vw, 7rem);
+
+  /* form */
+  --radius-s: 8px;
+  --radius-m: 14px;
+  --radius-l: 22px;
+  --radius-pill: 999px;
+
+  --shadow-s: 0 1px 2px rgba(28, 35, 33, 0.06),
+              0 2px 8px rgba(28, 35, 33, 0.05);
+  --shadow-m: 0 4px 12px rgba(28, 35, 33, 0.07),
+              0 12px 28px rgba(28, 35, 33, 0.07);
+  --shadow-l: 0 12px 24px rgba(28, 35, 33, 0.1),
+              0 28px 60px rgba(28, 35, 33, 0.12);
+
+  --dur-fast: 160ms;
+  --dur: 280ms;
+  --dur-slow: 640ms;
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+
+  --nav-h: 62px;
+
+  color-scheme: light;
 }
 
-/* --- 2. GLOBAL STYLES --- */
-body,
-html {
-  height: 100%;
-  margin: 0;
-  font-family: "Lato", sans-serif;
-  overflow-x: hidden;
+/* --- 2. DARK THEME ------------------------------------------------------- */
+/* System preference is the default; the toggle wins in either direction. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --brand: #7fa47b;
+    --brand-deep: #161d17;
+    --brand-tint: #202a20;
+    --brand-soft: #232f23;
+
+    --accent: #b48aba;
+    --accent-strong: #c9a6ce;
+    --accent-tint: rgba(180, 138, 186, 0.14);
+
+    --ink: #e4ebe2;
+    --ink-muted: #9eab9f;
+    --surface: #1a211b;
+    --surface-sunk: #121713;
+    --border: #2c352d;
+
+    --hero-base: #0e1310;
+    --bot-far: #5f8a5b;
+    --bot-mid: #7ba875;
+    --bot-near: #a9cca2;
+    --bot-far-o: 0.26;
+    --bot-mid-o: 0.3;
+    --bot-near-o: 0.34;
+    --hero-wash: rgba(48, 74, 46, 0.6);
+    --hero-shade: rgba(6, 9, 7, 0.8);
+    --hero-glow: rgba(78, 116, 74, 0.42);
+
+    --shadow-s: 0 1px 2px rgba(0, 0, 0, 0.4), 0 2px 8px rgba(0, 0, 0, 0.3);
+    --shadow-m: 0 4px 12px rgba(0, 0, 0, 0.42), 0 12px 28px rgba(0, 0, 0, 0.34);
+    --shadow-l: 0 12px 24px rgba(0, 0, 0, 0.46), 0 28px 60px rgba(0, 0, 0, 0.4);
+
+    color-scheme: dark;
+  }
 }
+
+:root[data-theme="dark"] {
+  --brand: #7fa47b;
+  --brand-deep: #161d17;
+  --brand-tint: #202a20;
+  --brand-soft: #232f23;
+
+  --accent: #b48aba;
+  --accent-strong: #c9a6ce;
+  --accent-tint: rgba(180, 138, 186, 0.14);
+
+  --ink: #e4ebe2;
+  --ink-muted: #9eab9f;
+  --surface: #1a211b;
+  --surface-sunk: #121713;
+  --border: #2c352d;
+
+  --hero-base: #0e1310;
+  --bot-far: #5f8a5b;
+  --bot-mid: #7ba875;
+  --bot-near: #a9cca2;
+  --bot-far-o: 0.26;
+  --bot-mid-o: 0.3;
+  --bot-near-o: 0.34;
+  --hero-wash: rgba(48, 74, 46, 0.6);
+  --hero-shade: rgba(6, 9, 7, 0.8);
+  --hero-glow: rgba(78, 116, 74, 0.42);
+
+  --shadow-s: 0 1px 2px rgba(0, 0, 0, 0.4), 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-m: 0 4px 12px rgba(0, 0, 0, 0.42), 0 12px 28px rgba(0, 0, 0, 0.34);
+  --shadow-l: 0 12px 24px rgba(0, 0, 0, 0.46), 0 28px 60px rgba(0, 0, 0, 0.4);
+
+  color-scheme: dark;
+}
+
+/* --- 3. BASE ------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  line-height: 1.65;
+  color: var(--ink);
+  background-color: var(--surface-sunk);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color var(--dur) var(--ease),
+              color var(--dur) var(--ease);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-head);
+  color: var(--ink);
+  line-height: 1.18;
+  letter-spacing: -0.015em;
+  margin: 0 0 var(--space-s);
+  text-wrap: balance;
+}
+
+h1 { font-size: var(--step-4); font-weight: 700; }
+h2 { font-size: var(--step-3); font-weight: 700; }
+h3 { font-size: var(--step-2); font-weight: 600; }
+
+p { margin: 0 0 var(--space-s); }
 
 a {
+  color: var(--brand);
   text-decoration: none;
+  transition: color var(--dur-fast) var(--ease);
 }
 
-h1 {
+img { max-width: 100%; }
+
+/* Focus ring — there was no focus styling anywhere before this. */
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: var(--radius-s);
+}
+
+/* The hero is a dark surface in both themes, so the themed focus colour
+   would be a dark plum on dark there. */
+.hero :focus-visible,
+.navbar :focus-visible {
+  outline-color: var(--hero-accent-2);
+}
+
+.skip-link {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -120%);
+  z-index: 2000;
+  padding: 0.7rem 1.25rem;
+  background: var(--accent-btn);
+  color: #fff;
+  font-family: var(--font-head);
+  font-weight: 600;
+  border-radius: 0 0 var(--radius-s) var(--radius-s);
+  transition: transform var(--dur) var(--ease);
+}
+.skip-link:focus {
+  transform: translate(-50%, 0);
+  color: #fff;
+}
+
+/* Shared section heading treatment */
+.section-head {
   text-align: center;
-  font-family: "Montserrat", sans-serif;
-  text-decoration: underline;
-  padding-bottom: 2rem;
-  color: var(--text-light);
+  max-width: 56ch;
+  margin: 0 auto var(--space-l);
+}
+.section-head h2 {
+  position: relative;
+  display: inline-block;
+  padding-bottom: var(--space-xs);
+}
+/* Replaces the old `h1 { text-decoration: underline }`, which made every
+   heading look like a link. */
+.section-head h2::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 3.25rem;
+  height: 3px;
+  border-radius: var(--radius-pill);
+  background: linear-gradient(90deg, var(--brand), var(--accent));
+  transform: translateX(-50%);
+}
+.section-head .subtitle {
+  color: var(--ink-muted);
+  font-size: var(--step-1);
+  margin: var(--space-xs) 0 0;
 }
 
 section {
-  padding-top: 7rem;
-  scroll-margin-top: 70px;
+  padding-top: var(--section-y);
+  scroll-margin-top: var(--nav-h);
 }
 
-hr {
-  border: 0;
-  height: 0;
-  box-shadow: 0 0 10px 1px #300038;
-  margin: 0;
+/* --- 4. NAV / CHROME ----------------------------------------------------- */
+.scroll-progress {
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: 3px;
+  z-index: 1040;
+  background: linear-gradient(90deg, var(--brand), var(--accent));
+  transform: scaleX(var(--progress, 0));
+  transform-origin: 0 50%;
+  will-change: transform;
+  pointer-events: none;
 }
 
-/* --- 3. NAVBAR --- */
 .navbar {
-  background-color: var(--bg-gray);
+  min-height: var(--nav-h);
+  background-color: var(--brand-deep);
+  border-bottom: 1px solid transparent;
+  transition: background-color var(--dur) var(--ease),
+              box-shadow var(--dur) var(--ease),
+              border-color var(--dur) var(--ease);
 }
-.navbar a {
-  color: var(--text-light);
-  font-family: "Montserrat", sans-serif;
+.navbar.is-scrolled {
+  background-color: color-mix(in srgb, var(--brand-deep) 82%, transparent);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  box-shadow: var(--shadow-m);
+  border-bottom-color: rgba(255, 255, 255, 0.08);
 }
+/* Safari < 15.4 and any browser without color-mix keeps the solid bar. */
+@supports not (background-color: color-mix(in srgb, red 50%, blue)) {
+  .navbar.is-scrolled { background-color: var(--brand-deep); }
+}
+
+.navbar-brand {
+  font-family: var(--font-head);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #eaf1e8;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.navbar-brand .brand-mark {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
+  background: linear-gradient(140deg, var(--brand-btn), var(--accent-btn));
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
+.navbar .nav-link,
+.navbar .resume-link a {
+  position: relative;
+  color: #cfdccb;
+  font-family: var(--font-head);
+  font-size: var(--step-s);
+  font-weight: 500;
+  transition: color var(--dur-fast) var(--ease);
+}
+.navbar .nav-link:hover,
+.navbar .nav-link:focus-visible,
+.navbar .resume-link a:hover {
+  color: #fff;
+}
+
+/* Scroll-spy underline */
+.navbar .nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0.5rem;
+  right: 0.5rem;
+  bottom: 0.25rem;
+  height: 2px;
+  border-radius: var(--radius-pill);
+  /* Fixed light plum: the navbar is dark in both themes, so the themed
+     --accent would be a dark plum on dark here in light mode. */
+  background: var(--hero-accent-2);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  transition: transform var(--dur) var(--ease);
+}
+.navbar .nav-link.is-active::after { transform: scaleX(1); }
+.navbar .nav-link.is-active { color: #fff; }
+.navbar .dropdown-toggle-split::after { display: none; }
+
 .navbar-nav .dropdown-menu {
-  background-color: var(--bg-gray);
-  border: none;
+  background-color: var(--brand-deep);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-m);
+  box-shadow: var(--shadow-l);
+  padding: 0.4rem;
 }
-.dropdown-item:hover {
-  background-color: var(--text-light);
-  color: var(--accent-color);
+.dropdown-item {
+  color: #cfdccb;
+  border-radius: var(--radius-s);
+  font-size: var(--step-s);
+  padding: 0.45rem 0.75rem;
+}
+.dropdown-item:hover,
+.dropdown-item:focus {
+  /* Fixed deep green, not var(--brand): the dark-theme --brand is light
+     enough that white label text would fall to ~2.8:1. */
+  background-color: var(--brand-btn);
+  color: #fff;
 }
 
-/* --- 4. HERO SECTION --- */
-.parralax {
+.resume-link a {
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: var(--radius-pill);
+  padding: 0.35rem 1rem;
+  transition: background-color var(--dur-fast) var(--ease),
+              border-color var(--dur-fast) var(--ease),
+              color var(--dur-fast) var(--ease);
+}
+.resume-link a:hover {
+  background-color: var(--accent-btn);
+  border-color: var(--accent-btn);
+  color: #fff;
+}
+
+.theme-toggle {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  margin-left: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: #cfdccb;
+  font-size: 1.05rem;
+  cursor: pointer;
+  transition: background-color var(--dur-fast) var(--ease),
+              color var(--dur-fast) var(--ease),
+              transform var(--dur-fast) var(--ease);
+}
+.theme-toggle:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  transform: rotate(-18deg);
+}
+/* Show sun in dark mode, moon in light — one icon at a time. */
+.theme-toggle .bi-sun-fill { display: none; }
+:root[data-theme="dark"] .theme-toggle .bi-sun-fill { display: block; }
+:root[data-theme="dark"] .theme-toggle .bi-moon-stars-fill { display: none; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .theme-toggle .bi-sun-fill { display: block; }
+  :root:not([data-theme="light"]) .theme-toggle .bi-moon-stars-fill { display: none; }
+}
+
+.navbar-toggler {
+  border-color: rgba(255, 255, 255, 0.24);
+  padding: 0.3rem 0.55rem;
+}
+
+/* --- 5. HERO ------------------------------------------------------------- */
+.hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  /* Tall enough that the parallax has room to read, capped so it never
+     turns into a scroll chore on a big display. */
+  min-height: clamp(34rem, 88svh, 56rem);
+  padding-top: calc(var(--nav-h) + var(--space-l));
+  padding-bottom: var(--space-xl);
+  background-color: var(--hero-base);
+  color: var(--hero-ink);
+}
+
+/* Canopy light: one soft off-centre bloom, plus a bottom shade that hands
+   the eye down into the page. */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -3;
   background:
-    linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("https://4kwallpapers.com/images/wallpapers/leaf-background-green-leaves-botanical-low-light-1680x1050-5851.jpg");
-  height: 70vh;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+    radial-gradient(78% 64% at 24% 12%, var(--hero-wash) 0%, transparent 72%),
+    linear-gradient(180deg, transparent 44%, var(--hero-shade) 100%);
 }
 
-.text-container {
-  padding-top: 10rem;
-  color: var(--text-light);
-  font-family: "Montserrat", sans-serif;
-  text-align: center;
+/* Fine grain so the wash doesn't band on wide displays. */
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.055;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-.image-container img {
-  width: 600px;
-  margin-top: 7rem;
+/* --- Botanical parallax layers ------------------------------------------ */
+/* The <defs> sprite only holds geometry; it must never take up space. */
+.bt-defs {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.hero-botanicals {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+}
+
+/* `--py` (scroll) and `--px` (pointer) are written by script.js; with no JS,
+   or under reduced motion, both stay 0 and the art sits at rest. */
+.bt-layer {
+  position: absolute;
+  inset: 0;
+  transform: translate3d(var(--px, 0px), var(--py, 0px), 0);
+  will-change: transform;
+}
+
+/* One slot per corner. Each pins its own corner of the artwork to the matching
+   corner of the hero and matches the art's aspect ratio, so foliage scales off
+   the hero's WIDTH alone — sizing it "cover"-style off a viewBox instead lets
+   a tall, narrow window blow the fronds up to fill the screen. `--bt-zoom`
+   then sets how large they read at each breakpoint. */
+.bt-slot {
+  position: absolute;
+  display: block;
+  width: 100%;
+  aspect-ratio: 1440 / 760;
+  height: auto;
+  transform: scale(var(--bt-zoom, 1.05));
+  /* A slow sway, independent of scroll. It uses the `translate` property, not
+     `transform`, so it composes with the zoom above instead of replacing it. */
+  animation: bt-sway 30s var(--ease) infinite alternate;
+}
+.bt-bl {
+  left: 0;
+  bottom: 0;
+  transform-origin: left bottom;
+}
+.bt-br {
+  right: 0;
+  bottom: 0;
+  transform-origin: right bottom;
+}
+.bt-tr {
+  right: 0;
+  top: 0;
+  transform-origin: right top;
+}
+.bt-stem {
+  fill: none;
+  stroke-linecap: round;
+}
+
+.bt-far {
+  color: var(--bot-far);
+  opacity: var(--bot-far-o);
+  filter: blur(1.6px); /* depth of field: the distance is softest */
+}
+.bt-mid {
+  color: var(--bot-mid);
+  opacity: var(--bot-mid-o);
+}
+.bt-near {
+  color: var(--bot-near);
+  opacity: var(--bot-near-o);
+}
+.bt-far .bt-slot,
+.bt-mid .bt-slot {
+  fill: currentColor;
+  stroke: currentColor;
+}
+/* The nearest layer is line art — it keeps the hero from reading as heavy. */
+.bt-near .bt-slot {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.4;
+}
+.bt-mid .bt-slot {
+  animation-duration: 24s;
+  animation-delay: -6s;
+}
+.bt-near .bt-slot {
+  animation-duration: 19s;
+  animation-delay: -11s;
+}
+
+@keyframes bt-sway {
+  from { translate: -0.5% 0.4%; }
+  to   { translate: 0.7% -0.5%; }
+}
+
+.hero-inner {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: var(--space-xl);
+  align-items: center;
+  width: 100%;
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 var(--space-m);
+}
+
+/* Copy and portrait drift too, a touch slower than the page, and the copy
+   fades as it leaves. `--fade` is set by script.js. */
+.hero-copy,
+.hero-portrait {
+  transform: translate3d(var(--px, 0px), var(--py, 0px), 0);
+}
+.hero-copy {
+  opacity: var(--fade, 1);
+}
+
+.hero h1 {
+  color: var(--hero-ink);
+  margin-bottom: var(--space-2xs);
+}
+.hero .hero-role {
+  font-family: var(--font-head);
+  font-size: var(--step-2);
+  font-weight: 500;
+  color: var(--hero-accent);
+  margin: 0 0 var(--space-s);
+}
+.hero .hero-quote {
+  color: var(--hero-ink-muted);
+  font-size: var(--step-1);
+  font-style: italic;
+  border-left: 2px solid var(--hero-accent-2);
+  padding-left: var(--space-s);
+  max-width: 46ch;
+  margin-bottom: var(--space-m);
+}
+
+.hero-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+}
+
+/* Buttons. Replaces the old cursive Playpen Sans `.btn`. */
+.btn-primary-cta,
+.btn-ghost-cta,
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-head);
+  font-size: var(--step-s);
+  font-weight: 600;
+  padding: 0.7rem 1.4rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: transform var(--dur-fast) var(--ease),
+              background-color var(--dur-fast) var(--ease),
+              box-shadow var(--dur-fast) var(--ease),
+              color var(--dur-fast) var(--ease);
+}
+.btn-primary-cta {
+  background-color: var(--accent-btn);
+  color: #fff;
+  box-shadow: 0 6px 18px rgba(110, 74, 115, 0.35);
+}
+.btn-primary-cta:hover {
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 26px rgba(110, 74, 115, 0.45);
+}
+.btn-ghost-cta {
+  background-color: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.3);
+  color: var(--hero-ink);
+}
+.btn-ghost-cta:hover {
+  background-color: rgba(255, 255, 255, 0.18);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+/* Portrait. The old rule was `width: 600px` on a 400x400 source inside a
+   col-sm-6 — upscaled, and it overflowed between 576px and 1200px. Capped at
+   native resolution now, and no longer hidden on mobile. */
+.hero-portrait {
+  position: relative;
+  justify-self: center;
+  width: clamp(190px, 34vw, 380px);
+  aspect-ratio: 1;
+}
+.hero-portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   border-radius: 50%;
+  border: 4px solid rgba(255, 255, 255, 0.14);
+  box-shadow: var(--shadow-l);
+  position: relative;
+  z-index: 1;
+}
+/* Soft halo so the circle doesn't sit flat against the foliage. */
+.hero-portrait::before {
+  content: "";
+  position: absolute;
+  inset: -12%;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--hero-glow) 0%, transparent 70%);
+  filter: blur(18px);
+  animation: portrait-float 9s var(--ease) infinite alternate;
+}
+/* A thin offset ring — the botanical-plate detail that keeps it sleek. */
+.hero-portrait::after {
+  content: "";
+  position: absolute;
+  inset: -7%;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  z-index: 2;
 }
 
-/* --- 5. CONTENT AREA --- */
-section.content {
+@keyframes portrait-float {
+  from { transform: translateY(-6px) scale(1); }
+  to   { transform: translateY(6px) scale(1.04); }
+}
+
+.hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-s);
+  margin-top: var(--space-m);
+  font-size: var(--step-s);
+  color: var(--hero-ink-muted);
+}
+.hero-meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.hero-meta i { color: var(--hero-accent-2); }
+
+/* --- CONTENT WRAPPER ---------------------------------------------------- */
+/* Was a hotlinked texture from toptal.com; generated in CSS now. */
+.content {
+  position: relative;
+  padding-top: 0;
+  background-color: var(--surface-sunk);
   background-image:
-    linear-gradient(to top, rgba(118, 126, 122, 0.8), rgba(118, 126, 122, 0.5)),
-    url("https://www.toptal.com/designers/subtlepatterns/uploads/geometric-leaves.png");
-  color: #290030;
+    radial-gradient(circle at 1px 1px, var(--border) 1px, transparent 0);
+  background-size: 22px 22px;
 }
+.content::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    var(--surface-sunk) 0%,
+    transparent 12%,
+    transparent 88%,
+    var(--surface-sunk) 100%
+  );
+}
+.content > * { position: relative; }
 
+/* --- 6. ABOUT ----------------------------------------------------------- */
+.about-container {
+  max-width: 68ch;
+}
 .about-container p {
+  font-size: var(--step-1);
   line-height: 1.8;
-  font-size: 1.1rem;
-  color: #444;
+  color: var(--ink-muted);
+}
+.about-container .about-hook {
+  font-family: var(--font-head);
+  font-size: var(--step-2);
+  font-weight: 600;
+  color: var(--ink);
 }
 .about-container strong {
-  color: var(--accent-color);
+  color: var(--brand);
   font-weight: 700;
 }
-
 .about-container a {
-  color: var(--accent-color);
+  color: var(--accent-strong);
   font-weight: 700;
-  border-bottom: 1px solid rgba(58, 77, 57, 0.3);
+  border-bottom: 2px solid var(--accent-tint);
+  transition: border-color var(--dur-fast) var(--ease);
+}
+.about-container a:hover { border-bottom-color: var(--accent); }
+
+/* --- 7. STATS ----------------------------------------------------------- */
+.stats-strip {
+  /* `section` already supplies padding-top: var(--section-y) — adding
+     margin-top on top of it doubled the gap above this strip. */
+  padding-top: var(--space-l);
+}
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  /* The certification tile is taller than the two numeric ones; centring
+     keeps the row visually balanced instead of top-aligning into dead space. */
+  align-items: center;
+  gap: var(--space-s);
+  padding: var(--space-l) var(--space-m);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-l);
+  box-shadow: var(--shadow-s);
+}
+.stat {
+  text-align: center;
+  padding: var(--space-xs);
+}
+.stat + .stat { border-left: 1px solid var(--border); }
+.stat-num {
+  display: block;
+  font-family: var(--font-head);
+  font-size: var(--step-4);
+  font-weight: 800;
+  line-height: 1;
+  color: var(--accent-strong);
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+}
+.stat-num .stat-suffix { font-size: 0.55em; vertical-align: super; }
+.stat-label {
+  display: block;
+  margin-top: var(--space-2xs);
+  font-family: var(--font-head);
+  font-size: var(--step-s);
+  font-weight: 500;
+  color: var(--ink-muted);
+}
+.stat-soon {
+  font-size: var(--step-xs);
+  color: var(--accent-strong);
+  background: var(--accent-tint);
+  border-radius: var(--radius-pill);
+  padding: 0.1rem 0.6rem;
+  display: inline-block;
+  margin-top: 0.3rem;
 }
 
-/* --- 6. STRATEGIC CAPABILITIES (Restored Styling) --- */
+/* --- 8. CAPABILITIES ---------------------------------------------------- */
 .capability-card {
-  background: #ffffff;
-  border-radius: 15px;
-  padding: 30px;
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
-  border: 1px solid #eee;
-  color: #333;
+  height: 100%;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-l);
+  padding: var(--space-l) var(--space-m);
+  color: var(--ink);
+  box-shadow: var(--shadow-s);
+  transition: transform var(--dur) var(--ease),
+              box-shadow var(--dur) var(--ease),
+              border-color var(--dur) var(--ease);
 }
-
 .capability-card:hover {
-  transform: translateY(-10px);
-  border: 2px solid var(--accent-color) !important;
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1) !important;
+  transform: translateY(-8px);
+  border-color: var(--brand);
+  box-shadow: var(--shadow-l);
 }
+.capability-card h3 { margin-bottom: var(--space-xs); }
+.capability-card > p { color: var(--ink-muted); }
+.capability-card strong { color: var(--brand); }
 
-.icon-box i,
+.icon-box {
+  display: grid;
+  place-items: center;
+  width: 62px;
+  height: 62px;
+  margin: 0 auto var(--space-s);
+  border-radius: var(--radius-m);
+  background: var(--brand-tint);
+  color: var(--brand);
+  transition: transform var(--dur) var(--ease);
+}
+.icon-box i { font-size: 1.85rem; line-height: 1; }
+.capability-card:hover .icon-box { transform: scale(1.08) rotate(-6deg); }
+
+.capability-list {
+  list-style: none;
+  margin: var(--space-s) 0 0;
+  padding: 0;
+  text-align: left;
+  display: grid;
+  gap: 0.4rem;
+}
+.capability-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  font-size: var(--step-s);
+  color: var(--ink-muted);
+}
 .capability-list i {
-  color: var(--accent-color) !important;
-}
-.icon-box i {
-  font-size: 3rem;
-}
-
-/* --- 7. TOOLKIT & SPECIAL HIGHLIGHTS --- */
-.card {
-  box-shadow: 0 0 50px #4c504e;
-  background-color: var(--bg-gray);
-  color: var(--text-light);
-  border: none;
+  color: var(--brand);
+  flex-shrink: 0;
+  margin-top: 0.28em;
 }
 
-/* The Salesforce Highlight - Fixed Background */
-.skill-card-special {
-  border: 2px solid var(--accent-color) !important;
-  background-color: var(
-    --accent-light
-  ) !important; /* Visible Green Background */
-  color: var(--accent-color) !important;
-}
-
-.skill-card-special strong {
-  color: var(--accent-color);
-}
-.skill-icon {
-  width: 36px;
-  height: auto;
-}
-
-/* --- 8. PROJECTS & SOCIALS --- */
-.thumbnail {
-  width: 90%;
-  border-radius: 3px;
-  border: solid #606763 1px;
-  box-shadow: 0 0 50px #4c504e;
-}
-
-/* Social Media link styling */
-.contact-icons .card a,
-.contact-icons i {
-  color: var(--text-light) !important;
-}
-
-.contact-icons .card:hover a,
-.contact-icons .card:hover i {
-  color: var(--accent-color) !important;
-}
-
-.footer {
-  background-color: var(--bg-gray);
-  padding: 20px 0;
-  color: var(--text-light);
-}
-.btn {
-  background: var(--text-light);
-  font-family: "Playpen Sans", cursive;
-  border: 1px solid black;
-}
-
-.hvr-grow {
-  transition: 0.3s;
-}
-.hvr-grow:hover {
-  transform: scale(1.1);
-}
-
-/* --- Center Capability Card (The "Join") --- */
+/* The middle card — the "join" between strategy and engineering. */
 .highlight-card {
-  /* Using a solid light version of your green so it definitely shows up */
-  background-color: #f2f4f2 !important;
-  border-top: 6px solid var(--accent-color) !important; /* Thick top accent */
-  border-left: 1px solid #ddd;
-  border-right: 1px solid #ddd;
-  border-bottom: 1px solid #ddd;
-  transform: scale(1.02); /* Makes it slightly larger to show it's the 'join' */
-  z-index: 2;
-  box-shadow: 0 10px 30px rgba(58, 77, 57, 0.15) !important;
-}
-
-/* Ensure the text inside the join card is sharp */
-/* --- Center Capability Card (The "Join") --- */
-.highlight-card {
-  /* A soft Sage background that is clearly visible */
-  background-color: #f0f4f0 !important;
-  /* A full, clean border in your Blazer Green */
-  border: 2px solid var(--accent-color) !important;
-  /* Slightly larger to visually 'overlap' and connect the other two */
-  transform: scale(1.05);
-  z-index: 5;
-  box-shadow: 0 10px 40px rgba(58, 77, 57, 0.15) !important;
+  background: var(--brand-soft);
+  border: 2px solid var(--brand);
+  box-shadow: var(--shadow-m);
   position: relative;
 }
-
-/* The "Join" Label at the top */
 .highlight-card::before {
   content: "INTEGRATION";
   position: absolute;
-  top: -12px;
+  top: -11px;
   left: 50%;
   transform: translateX(-50%);
-  background-color: var(--accent-color);
-  color: white;
-  padding: 2px 15px;
-  border-radius: 20px;
-  font-size: 0.65rem;
+  background-color: var(--accent-btn);
+  color: #fff;
+  padding: 0.15rem 0.9rem;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-head);
+  font-size: 0.62rem;
   font-weight: 800;
-  letter-spacing: 1px;
+  letter-spacing: 0.09em;
+  white-space: nowrap;
+}
+@media (min-width: 992px) {
+  .highlight-card { transform: scale(1.04); }
+  .highlight-card:hover { transform: scale(1.04) translateY(-8px); }
 }
 
-/* Ensure the text inside the join card matches the theme */
-.highlight-card h3,
-.highlight-card p {
-  color: var(--accent-color) !important;
+/* --- 9. TOOLKIT --------------------------------------------------------- */
+.toolkit-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: var(--space-s);
+}
+.tool-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-s);
+  padding: 1rem 1.15rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-m);
+  box-shadow: var(--shadow-s);
+  font-family: var(--font-head);
+  font-weight: 600;
+  font-size: var(--step-s);
+  color: var(--ink);
+  transition: transform var(--dur) var(--ease),
+              box-shadow var(--dur) var(--ease),
+              border-color var(--dur) var(--ease);
+}
+.tool-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--brand);
+  box-shadow: var(--shadow-m);
+}
+.tool-card .skill-icon,
+.tool-card > i {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  padding: 5px;
+  border-radius: 9px;
+  /* Deliberately a fixed light plate in BOTH themes: several of these logos
+     are monochrome dark (Tailwind's is pure black) and would vanish against
+     the dark surface otherwise. */
+  background: #f2f5f1;
+  box-sizing: border-box;
+  object-fit: contain;
+}
+.tool-card > i {
+  display: grid;
+  place-items: center;
+  font-size: 1.15rem;
+  /* Fixed, not var(--brand) — the plate is always light, so the dark green
+     is the reliable choice in either theme. */
+  color: #3a4d39;
 }
 
-.contact-form {
-  padding-top: 7rem;
+/* --- 10. CONTACT -------------------------------------------------------- */
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-s);
+}
+.contact-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-s);
+  padding: 1.1rem 1.25rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-m);
+  box-shadow: var(--shadow-s);
+  font-family: var(--font-head);
+  font-weight: 600;
+  color: var(--ink);
+  transition: transform var(--dur) var(--ease),
+              box-shadow var(--dur) var(--ease),
+              border-color var(--dur) var(--ease),
+              background-color var(--dur) var(--ease);
+}
+.contact-card i { font-size: 1.4rem; color: var(--brand); }
+.contact-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--brand);
+  background-color: var(--brand-tint);
+  box-shadow: var(--shadow-m);
+  color: var(--ink);
 }
 
-.capability-card li {
-  list-style-type: none;
+.contact-form-wrap {
+  max-width: 720px;
+  margin: var(--section-y) auto 0;
+  padding: clamp(1.5rem, 1rem + 2vw, 2.5rem);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-l);
+  box-shadow: var(--shadow-m);
+}
+.form-field { margin-bottom: var(--space-s); }
+.form-field label {
+  display: block;
+  font-family: var(--font-head);
+  font-size: var(--step-s);
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 0.35rem;
+}
+.contact-form-wrap .form-control {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  color: var(--ink);
+  background-color: var(--surface-sunk);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-s);
+  transition: border-color var(--dur-fast) var(--ease),
+              box-shadow var(--dur-fast) var(--ease);
+}
+.contact-form-wrap .form-control:focus {
+  outline: none;
+  border-color: var(--brand);
+  box-shadow: 0 0 0 3px var(--accent-tint);
+  background-color: var(--surface);
+}
+.contact-form-wrap .form-control::placeholder { color: var(--ink-muted); opacity: 0.7; }
+.form-hint {
+  display: block;
+  margin-top: 0.3rem;
+  font-size: var(--step-xs);
+  color: var(--ink-muted);
+}
+.form-actions { text-align: center; margin-top: var(--space-m); }
+.form-actions .btn-primary-cta { justify-content: center; }
+
+/* --- 11. FOOTER --------------------------------------------------------- */
+.footer {
+  background-color: var(--brand-deep);
+  color: #cfdccb;
+  padding: var(--space-l) 0;
+  margin-top: var(--section-y);
+  font-size: var(--step-s);
+}
+.footer a { color: #eaf1e8; border-bottom: 1px solid rgba(255, 255, 255, 0.25); }
+.footer a:hover { color: #fff; }
+.footer .footer-tag { color: var(--hero-accent); }
+
+/* --- 12. MOTION UTILITIES ---------------------------------------------- */
+/* Scoped to .js-reveal, which the inline head script adds. If JS never runs,
+   nothing is hidden and the page renders as plain static content. */
+.js-reveal [data-reveal] {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity var(--dur-slow) var(--ease),
+              transform var(--dur-slow) var(--ease);
+  transition-delay: calc(var(--i, 0) * 85ms);
+}
+.js-reveal [data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
 }
 
-@media screen and (max-width: 575px) {
-  .image-container img {
-    display: none;
+.hvr-grow { transition: transform var(--dur) var(--ease); }
+.hvr-grow:hover { transform: scale(1.03); }
+
+/* --- 13. REDUCED MOTION ------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  /* `:root`, not `html`: Bootstrap ships
+     `@media (prefers-reduced-motion: no-preference) { :root { scroll-behavior: smooth } }`,
+     and :root (0,1,0) outranks html (0,0,1). Bootstrap's rule is switched off
+     under `reduce` so `html` would in fact win here, but matching its
+     specificity means this guarantee doesn't rest on another library's
+     media query staying the way it is. */
+  :root { scroll-behavior: auto; }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
   }
-  .text-container {
-    width: 100%;
+
+  /* Content must land in its final state, never mid-reveal. */
+  .js-reveal [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
   }
+
+  /* Foliage sits still, and the parallax offsets stay at zero — script.js
+     never writes them under reduced motion, but pin them anyway in case a
+     value was already set when the preference flipped. */
+  .bt-slot,
+  .hero-portrait::before { animation: none; }
+  .bt-layer,
+  .hero-copy,
+  .hero-portrait {
+    transform: none !important;
+    opacity: 1 !important;
+  }
+  .hvr-grow:hover,
+  .capability-card:hover,
+  .tool-card:hover,
+  .contact-card:hover { transform: none; }
+}
+
+/* --- 14. RESPONSIVE ---------------------------------------------------- */
+@media (max-width: 991px) {
+  /* Narrower viewport, bigger multiplier: the art scales off hero width, so
+     without this the fronds would shrink to specks on a phone. The stacked
+     layout centres the copy over the foliage, so it also steps back a little. */
+  .hero-botanicals {
+    --bt-zoom: 1.35;
+    --bot-far-o: 0.18;
+    --bot-mid-o: 0.2;
+    --bot-near-o: 0.3;
+  }
+  .hero-inner {
+    grid-template-columns: 1fr;
+    gap: var(--space-l);
+    text-align: center;
+  }
+  .hero-portrait { grid-row: 1; }
+  .hero .hero-quote {
+    margin-inline: auto;
+    text-align: left;
+  }
+  .hero-cta,
+  .hero-meta { justify-content: center; }
+  .theme-toggle { margin-left: 0; }
+}
+
+@media (max-width: 767px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-m);
+  }
+  .stat + .stat {
+    border-left: 0;
+    border-top: 1px solid var(--border);
+    padding-top: var(--space-m);
+  }
+}
+
+@media (max-width: 575px) {
+  .hero-botanicals { --bt-zoom: 2; }
+  .hero .hero-quote {
+    border-left: 0;
+    border-top: 2px solid var(--hero-accent-2);
+    padding-left: 0;
+    padding-top: var(--space-xs);
+  }
+  .hero-cta > * { flex: 1 1 100%; justify-content: center; }
+}
+
+@media print {
+  .navbar, .scroll-progress, .theme-toggle,
+  .hero::before, .hero::after, .hero-botanicals { display: none; }
+  .hero { min-height: 0; }
+  body { background: #fff; color: #000; }
 }
